@@ -84,7 +84,7 @@ class sql extends sqlAdvanced{
 	 */
 	 
 	public static function nbrRows() {
-		return mysql_num_rows(self::$query_result);
+		return @mysql_num_rows(self::$query_result);
 	}
 
 

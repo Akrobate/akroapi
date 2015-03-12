@@ -61,7 +61,7 @@ class Controller extends CoreController {
 			} elseif(CoreController::controllerExists($coreName)) {
 				$ctrName = $coreName;			
 			}
-			echo($ctrName);
+			//echo($ctrName);
 			// Création de l'objet enfant en fonction des params
 			$obj = new $ctrName();
 			CoreController::share($this, $obj);

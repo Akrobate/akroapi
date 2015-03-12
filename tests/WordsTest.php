@@ -38,6 +38,43 @@ class WordsTest extends PHPUnit_Framework_TestCase {
 		$query = json_encode($msg);
     	echo(curlPostQuery(self::$url, $query));
     }
+    
+    
+    public function testSaveAnItem() {
+    	$msg = self::$message;
+    	$msg['action'] = 'save';
+    	$msg['params']['text'] = "Mon test insert par tests";
+    	$msg['params']['longitude'] = 3.56;
+    	$msg['params']['latitude'] = 2.45;
+    	$msg['params']['altitude'] = 12.34;
+    	$msg['params']['id_owner'] = 2;
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
+    
+
+    public function testSaveAndUserCreate() {
+    	$msg = self::$message;
+    	$msg['action'] = 'save';
+    	$msg['params']['text'] = "Mon test insert par tests";
+    	$msg['params']['longitude'] = 3.56;
+    	$msg['params']['latitude'] = 2.45;
+    	$msg['params']['altitude'] = 12.34;
+    	$msg['params']['hash'] = "FROMTESTUSER" . rand(1,20);
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
+
+
+    public function testSearch() {
+    	$msg = self::$message;
+    	$msg['action'] = 'search';
+    	$msg['params']['longitude'] = 5.700000;
+    	$msg['params']['latitude'] = 2.000000;
+    	$msg['params']['altitude'] = 2.30000;
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
 
 
     protected function tearDown() {

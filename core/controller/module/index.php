@@ -37,7 +37,7 @@ class Module_Index extends CoreController {
 		
 		//$this->total = $orm->total;		
 		$this->assign('listContent', $content);
-		$this->getCallerClass()->result = "fail";
+		$this->getCallerClass()->result = "success";
 		
 		
 	}
