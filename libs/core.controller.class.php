@@ -17,6 +17,8 @@ class CoreController {
 	public $template;
 	public $data;
 	
+	public $callerClass;
+	
 	public $params;
 
 	public static $headressources = array();
@@ -164,6 +166,16 @@ class CoreController {
 		return $this;		
 	}
 	
+	
+	/**
+	 *	@brief		
+	 *	@return		
+	 */
+	 
+	public function setCallerClass($cc) {
+		$this->callerClass = $cc;
+	}
+	
 	/**
 	 *	@brief		Getteur d'action
 	 *	@return		string Renvoi le nom de l'action
@@ -203,6 +215,15 @@ class CoreController {
 		return $this->params;		
 	}
 	
+	
+	/**
+	 *	@brief		
+	 *	@return		
+	 */
+
+	public function getCallerClass() {
+		return $this->callerClass;		
+	}
 	
 	/**
 	 *	@brief		Assigne la variable
@@ -343,6 +364,7 @@ class CoreController {
 		$to->setModule($from->getModule());
 		$to->setFormat($from->getFormat());
 		$to->setParams($from->getParams());
+		$to->setCallerClass($from);
 	}
 	
 	

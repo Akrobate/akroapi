@@ -61,16 +61,19 @@ class Controller extends CoreController {
 			} elseif(CoreController::controllerExists($coreName)) {
 				$ctrName = $coreName;			
 			}
-	
-			$obj = new $ctrName();		
+			echo($ctrName);
+			// Création de l'objet enfant en fonction des params
+			$obj = new $ctrName();
 			CoreController::share($this, $obj);
+			
+			// assignation et execution de l'objet enfant.
+			$this->assign('data', $obj->getArray());
 			
 			$this->assign('action', $this->action);
 			$this->assign('module', $this->module);
-			$this->assign('data', $obj->getArray());
 			$this->assign('result', $this->result);
 			$this->assign('errorId', $this->errorId);			
-
+			
 		}
 
 	}
@@ -98,7 +101,7 @@ class Controller extends CoreController {
 		$exists = false;
 		if (ModuleManager::modulesExists($this->module)) {		
 			if(ModuleManager::ActionExistInModule($this->module, $this->action)) {
-				$this->result = "";
+				//$this->result = "";
 				$this->errorId = 200;
 				$exists = true;
 			} else {
