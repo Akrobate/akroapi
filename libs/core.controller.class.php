@@ -16,6 +16,8 @@ class CoreController {
 	public $format;
 	public $template;
 	public $data;
+	
+	public $params;
 
 	public static $headressources = array();
 	
@@ -153,6 +155,16 @@ class CoreController {
 	
 	
 	/**
+	 *	@brief		Setteur de params
+	 *	@return		this Renvoi la classe courantes
+	 */
+
+	public function setParams($params = array()) {
+		$this->params = $params;
+		return $this;		
+	}
+	
+	/**
 	 *	@brief		Getteur d'action
 	 *	@return		string Renvoi le nom de l'action
 	 */
@@ -182,6 +194,16 @@ class CoreController {
 	}
 
 
+	/**
+	 *	@brief		Getteur de params
+	 *	@return		Renvoi les params
+	 */
+
+	public function getParams() {
+		return $this->params;		
+	}
+	
+	
 	/**
 	 *	@brief		Assigne la variable
 	 *	@details	Assigne la variable pour un usage dans les templates
@@ -258,6 +280,20 @@ class CoreController {
 	}
 
 
+/**
+	 *	@brief		Méthode qui execute et renvoi du JSON
+	 *	@return 	renvoi le JSON
+	 *
+	 */
+	 
+	public function getArray() {
+		$this->preinit();
+		$this->init();
+		return $this->data;
+	}
+
+
+
 	/**
 	 *	@brief		Méthode qui execute l'ensemble du processus
 	 *	@return 	string	Renvoi le rendu vers la sortie standard
@@ -306,7 +342,7 @@ class CoreController {
 		$to->setAction($from->getAction());
 		$to->setModule($from->getModule());
 		$to->setFormat($from->getFormat());
-		
+		$to->setParams($from->getParams());
 	}
 	
 	

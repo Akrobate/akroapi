@@ -49,6 +49,58 @@ class ModuleManager {
 		return $rez;
 	}
 	
+
+	 
+	public static function getActionsFromSTDModule($module, $action) {
+		$dirs = scandir(PATH_CORE_STD_MODULES);
+
+		$rez = array();
+		foreach($dirs as $dir) {
+			if(($dir != "..") && ($dir != ".") && ((strpos($dir, ".svn") === false))) {
+				$rez[] = str_replace('.php','', $dir);
+			}
+		}
+		return $rez;
+	}
+	
+	
+	public static function ActionExistInSTDModule($module, $action) {
+		$actions = self::getActionsFromSTDModule($module, $action);
+		return in_array($action,$actions);
+	}
+
+
+
+	public static function ActionExistInModule($module, $action) {
+
+			$moduleName = ucfirst($module);			
+			$actionName = ucfirst($action);
+	
+			$customName = 'Modules_' . $moduleName . '_' . $actionName;
+			$coreName = 'Module_' . $actionName;
+	
+			$exists = false;
+			if (CoreController::controllerExists($customName)) {
+				$exists = true;
+			} elseif(CoreController::controllerExists($coreName)) {
+				$exists = true;
+			}
+			
+			return $exists;
+			
+	}
+		
+	/**
+	 * @brief		Determine si un module existe ou pas
+	 * @details		
+	 * @param	module		le nom du module a triater
+	 * @return	bool		Renvoi true si existe, false sinon
+	 */
+	 
+	public static function modulesExists($module) {
+		$modules = self::getAllModules();
+		return in_array($module,$modules);
+	}
 	
 	/**
 	 * @brief		Récupère toutes les jointures d'un module

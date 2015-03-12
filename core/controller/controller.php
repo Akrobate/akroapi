@@ -6,12 +6,22 @@
  *	les requetes, un genre de vrai routeur
  *
  *
+ *	ErrorsCode	success 200;
+ *				module_missing 210
+ *				action_missing 220
+ *				
+ *
+ *
+ *
+ *
  */
 
 
 class Controller extends CoreController {
 
 
+	public $result = "success";
+	public $errorId = 200;
 	/**
 	 * 
 	 *	@briefMethode Point d'entrée de l'application
@@ -20,11 +30,14 @@ class Controller extends CoreController {
 	 */
 
 	public function init() {
-		if (users::isConnected() || 1) {
-			$this->whenConnected();
+	
+	
+		if($this->ModuleAndActionExists()) {
+			$this->ProcessIt();
 		} else {
-			$this->whenNotConnected();
+			$this->ModuleOrActionNotFound();
 		}
+		
 	}
 	
 	
@@ -33,7 +46,7 @@ class Controller extends CoreController {
 	 *
 	 */
 	
-	public function whenConnected() {
+	public function ProcessIt() {
 	
 		if ($this->action != "") {
 		
@@ -51,12 +64,15 @@ class Controller extends CoreController {
 	
 			$obj = new $ctrName();		
 			CoreController::share($this, $obj);
-			$this->assign('right', $obj->renderSTR());
+			
+			$this->assign('action', $this->action);
+			$this->assign('module', $this->module);
+			$this->assign('data', $obj->getArray());
+			$this->assign('result', $this->result);
+			$this->assign('errorId', $this->errorId);			
+
 		}
 
-		//	$allModules = ModuleManager::getAllModules();
-		//	$this->assign('topLinks', $allModules);
-		//	$this->assign('left', $obj->renderJSON());
 	}
 	
 	
@@ -65,13 +81,35 @@ class Controller extends CoreController {
 	 *	@brief methode appelé quand l'utilisateur est n'est pas connecté
 	 */
 	
-	public function whenNotConnected() {
+	public function ModuleOrActionNotFound() {
 	
-		$customName = 'Modules_Users_Login';
-		$obj = new $customName();
-		$this->assign('sidebar', false);
-		$objstr = $obj->renderSTR();
-		$this->assign('middle', $objstr);
+		$this->assign('action', $this->action);
+		$this->assign('module', $this->module);
+		$this->assign('result', $this->result);
+		$this->assign('errorId', $this->errorId);
+	}
+	
+	
+	
+	
+	
+	
+	public function ModuleAndActionExists() {
+		$exists = false;
+		if (ModuleManager::modulesExists($this->module)) {		
+			if(ModuleManager::ActionExistInModule($this->module, $this->action)) {
+				$this->result = "";
+				$this->errorId = 200;
+				$exists = true;
+			} else {
+				$this->result = "Action Missing";
+				$this->errorId = 220;				
+			}
+		} else {
+			$this->result = "Module Missing";
+			$this->errorId = 210;
+		}
+		return $exists;		
 	}
 	
 }

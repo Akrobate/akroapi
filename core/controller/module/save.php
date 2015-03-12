@@ -16,16 +16,23 @@ class Module_Save extends CoreController {
 
 	public function init() {
 	
-	
-		$id = request::get('id');
+		
 		$orm = new OrmNode();		
 		$fields = OrmNode::getFieldsFor($this->getModule());
 		
 		$data = array();
+		$params = $this->getParams();
 
+		$id = $params['id'];
+
+		// On nettoye les parametres d'eventuels champs non gérés
+		// Pour obtenir un data object compatible avec l'upser
+		
 		foreach($fields as $fieldname=>$field) {
-			$data[$fieldname] = request::get($fieldname);
+			$data[$fieldname] = $params[$fieldname];
 		}
+		
+
 		
 		$allFields = array_keys($fields);
 		
@@ -43,7 +50,7 @@ class Module_Save extends CoreController {
 		}
 
 		//echo("========" . $id);
-		url::redirect($this->getModule(), 'view', $id);	
+		//url::redirect($this->getModule(), 'view', $id);	
 		
 	}
 }

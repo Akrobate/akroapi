@@ -20,16 +20,26 @@ class Module_Index extends CoreController {
 
 	public function init() {
 		$id = request::get('id');
+		$orm = new OrmNode();
 		$module = $this->getModule();
-		$list = new List_Frameview();
-		$views = users::getProfile();
-
-		if (isset($views['view'][$module]['list']['filter'])){
-			$list->setFilter($views['view'][$module]['list']['filter']);
-		}
-		CoreController::share($this, $list);
-		$listContent = $list->renderSTR();
-		$this->assign('listContent', $listContent);
+		//$orm->start_limit = $this->start;
+		//$orm->nbr_limit = $this->nbr;		
+		
+		//print_r($listFields);		
+		//$orm->setFilter($this->filter);
+		
+		$listFields = OrmNode::getFieldsFor($module);
+		$listFields['id'] = array('label'=>'id', 'type'=>'int');
+		$content = $orm->getAllData($this->getModule(), $listFields);
+		
+		
+		//print_r($content);
+		
+		//$this->total = $orm->total;		
+		$this->assign('listContent', $content);
+		
+		
 		
 	}
+
 }

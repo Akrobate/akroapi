@@ -38,6 +38,7 @@
 
 $msg = array(
 	'action' => 'getwords',
+	'module' => 'words',
 	'result' => 'success',
 	'errorId' => 200,
 	'action' => 'getwords',

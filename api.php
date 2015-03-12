@@ -21,6 +21,7 @@ define ("PATH_FONTS", PATH_CURRENT."public" . PATH_SEP . "fonts" . PATH_SEP);
 define ("PATH_MODULES", PATH_CURRENT . "modules" . PATH_SEP );
 define ("PATH_CORE", PATH_CURRENT . "core" . PATH_SEP );
 define ("PATH_CORE_CONTROLLER", PATH_CORE . "controller" . PATH_SEP );	
+define ("PATH_CORE_STD_MODULES", PATH_CORE_CONTROLLER . "module" .PATH_SEP );	
 define ("PATH_CORE_VIEWS", PATH_CORE . "views" . PATH_SEP );
 define ("PATH_CUSTOM", PATH_CURRENT. "custom" . PATH_SEP);	
 define ("PATH_CUSTOM_CONTROLLER", PATH_CUSTOM . "controller" . PATH_SEP);	

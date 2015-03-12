@@ -3,18 +3,17 @@
 	// DO NOT FORGET: "LESS IS MORE"
 	session_start();
 	
-	
-	//require_once("./api.php");
-	
-	var_dump($_POST);
-	var_dump(file_get_contents("php://input"));
-	
-	exit();
-	
+	require_once("./api.php");
+	$rq = request::getPostJSON();
+	var_dump($rq);
 	
 	$ctr = new Controller();
-	$ctr->setAction(request::get("action"));
-	$ctr->setModule(request::get("controller"));
-//	$ctr->setFormat(request::get("format"));
+	$ctr->setAction($rq->action);
+	$ctr->setModule($rq->module);
+	$ctr->setParams(@$rq->params);
 	$ctr->setFormat("json");
+	
+	//debug
+	//print_r($ctr->getArray());
+	
 	$ctr->renderJSON();
