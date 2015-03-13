@@ -50,6 +50,7 @@ require_once(PATH_LIBS . "dataNode.class.php");
 require_once(PATH_LIBS . "users.class.php");
 require_once(PATH_LIBS . "phpMailer.class.php");
 require_once(PATH_LIBS . "myMail.class.php");
+require_once(PATH_LIBS . "simpleCoords.class.php");
 	
 require_once(PATH_LIBS . "autoloader.php");
 

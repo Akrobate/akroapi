@@ -11,14 +11,16 @@
 
 class Modules_Words_Search extends CoreController {
 
+	const NBR_METERS_SEARCHING = 30;
+
 
 	/** 
 	 *	@brief	Méthode init qui recupere la liste de resultats
 	 *	@details	Affiche la liste de contenus
 	 *
-	 * //$orm->start_limit = $this->start;
-	 *	//$orm->nbr_limit = $this->nbr;		
-	 *
+	 * //	$orm->start_limit = $this->start;
+	 * //	$orm->nbr_limit = $this->nbr;		
+	 * //	$orm->setFilter(" (altitude = '$altitude') AND (longitude >= '$longitude') AND (latitude = '$latitude') ");
 	 *
 	 */
 
@@ -36,13 +38,19 @@ class Modules_Words_Search extends CoreController {
 		$listFields = OrmNode::getFieldsFor($module);
 		$listFields['id'] = array('label'=>'id', 'type'=>'int');
 		
-		$orm->setFilter(" (altitude = '$altitude') AND (longitude = '$longitude') AND (latitude = '$latitude') ");
+		$enlargedCoords = SimpleCoords::getLargeCoords($latitude, $longitude, self::NBR_METERS_SEARCHING);
+		
+		$orm->setFilter(" (altitude = '$altitude')
+							 AND (longitude <= '{$enlargedCoords['east']['long']}') 
+							 AND (longitude >= '{$enlargedCoords['west']['long']}') 		
+							 AND (latitude <= '{$enlargedCoords['north']['lat']}')
+							 AND (latitude >= '{$enlargedCoords['south']['lat']}') ");
+		
 		$content = $orm->getAllData($this->getModule(), $listFields);
 		//$this->total = $orm->total;
 		
 		$this->assign('found', $content);
 		$this->getCallerClass()->result = "success";
-		
 	}
 
 }
