@@ -58,38 +58,4 @@ class DataNode {
 			return $data;
 		}
 	}
-	
-	
-	/**
-	 *	Créé de la data de maniere aléatoire mais basé sur un webservice
-	 *	@brief	Permet de peupler le module contact avec des enregistrements réalistes
-	 *	@details	recupere depuis le service api.randomuser.me
-	 */
-	
-	public static function peopleTableContacts($name, $params = array()) {
-
-		$str = file_get_contents("http://api.randomuser.me/");
-		$obj = json_decode($str);
-		$user = $obj->results[0]->user;
-		
-		if (!empty($name)) {
-			$value = "";  
-			$data = array();
-			foreach( $params as $fieldname => $val ) {
-				$data[$fieldname] = $value;		
-			}
-		}
-			  
-		$data['nom'] = ucfirst($user->name->last);
-		$data['prenom'] = ucfirst($user->name->first);		
-		$data['email'] = $user->email;
-		$data['adresse'] = $user->location->street;
-		$data['ville'] = $user->location->city;
-		$data['cp'] = $user->location->zip;
-		$data['telephone'] = $user->phone;  
-		
-		$data['photo'] = $user->picture->large;
-		
-		return $data;		
-	}	
 }

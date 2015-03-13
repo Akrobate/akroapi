@@ -156,8 +156,6 @@ class OrmNode extends DataAdapter {
 			$query = "SELECT * FROM $module WHERE 1";		
 		}
 
-	echo("$query");
-
 		sql::query($query);
 		$this->total = sql::nbrRows();
 		$query .= " LIMIT  " . $this->start_limit . ", " . $this->nbr_limit;
