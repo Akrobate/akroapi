@@ -30,9 +30,9 @@ class Modules_Words_Save extends CoreController {
 		
 		if (isset($params->hash)) {
 			$hash = $params->hash;
-			$owner_id = $this->getUserIdFromHash($hash);
+			$owner_id = users::getUserIdFromHash($hash);
 			if($owner_id === false) {
-				$owner_id = $this->createUser($hash);
+				$owner_id = users::createUser($hash);
 			}
 			$params->id_owner = $owner_id;	
 		}
@@ -73,57 +73,5 @@ class Modules_Words_Save extends CoreController {
 		}
 	
 	}
-	
-	
-	/** 
-	 *	@brief	Méthode 
-	 *
-	 */
-
-	public function getUserIdFromHash($hash) {
-	
-		if ($hash == "") {
-			return false;
-		}
-	
-//		$module = sql::escapeString($this->getModule());
-		$hash = sql::escapeString($hash);
-				
-		$query = "SELECT * FROM owner WHERE owner = '$hash'";
-		sql::query($query);
-		$data = sql::allFetchArray();
-		
-		if (sql::nbrRows() == 1) {
-			return $data[0]['id'];
-		} else {
-			return false;
-		}
-	
-	}
-	
-	
-	
-	/** 
-	 *	@brief	Méthode init qui sauvegarde les données passées en params
-	 *
-	 */
-
-	public function createUser($hash) {
-
-		if ($hash == "") {
-			return false;
-		}
-		$hash = sql::escapeString($hash);		
-		$query = "INSERT INTO owner (owner, created) VALUES ('$hash', NOW() ); ";
-		sql::query($query);
-		$id = sql::lastId();;
-
-		if ($id) {
-			return $id;
-		} else {
-			return false;
-		}	
-	}
-
 
 }

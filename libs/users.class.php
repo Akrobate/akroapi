@@ -195,5 +195,72 @@ class users {
 		return false;
 	}
 	
+	
+	/**
+	 * @brief		Mehodes personnalisées pour le fonction précis.
+	 *				Potentiellement le restea a supprimer ou ce code a déplacer et heriter
+	 *
+	 *
+ 	 *
+	 *
+	 * 
+ 	 *
+ 	 * 	 	 
+	 */
+	
+	
+	/** 
+	 *	@brief	Méthode 
+	 *
+	 */
+
+	public static function getUserIdFromHash($hash) {
+	
+		if ($hash == "") {
+			return false;
+		}
+	
+//		$module = sql::escapeString($this->getModule());
+		$hash = sql::escapeString($hash);
+				
+		$query = "SELECT * FROM owner WHERE owner = '$hash'";
+		sql::query($query);
+		$data = sql::allFetchArray();
+		
+		if (sql::nbrRows() == 1) {
+			return $data[0]['id'];
+		} else {
+			return false;
+		}
+	
+	}
+	
+	
+	
+	/** 
+	 *	@brief	Méthode init qui sauvegarde les données passées en params
+	 *
+	 */
+
+	public static function createUser($hash) {
+
+		if ($hash == "") {
+			return false;
+		}
+		$hash = sql::escapeString($hash);		
+		$query = "INSERT INTO owner (owner, created) VALUES ('$hash', NOW() ); ";
+		sql::query($query);
+		$id = sql::lastId();;
+
+		if ($id) {
+			return $id;
+		} else {
+			return false;
+		}	
+	}
+
+	
+	
+	
 }
 
