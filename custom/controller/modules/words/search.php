@@ -47,9 +47,10 @@ class Modules_Words_Search extends CoreController {
 							 AND (latitude >= '{$enlargedCoords['south']['lat']}') ");
 		
 		$content = $orm->getAllData($this->getModule(), $listFields);
-		//$this->total = $orm->total;
+		//$this->total =;
 		
 		$this->assign('found', $content);
+		$this->assign('nbr',  $orm->total);
 		$this->getCallerClass()->result = "success";
 	}
 

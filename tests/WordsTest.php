@@ -65,6 +65,19 @@ class WordsTest extends PHPUnit_Framework_TestCase {
     	echo(curlPostQuery(self::$url, $query));
     }
 
+/*
+ 	public function testSaveForSearchTMPUserCreate() {
+    	$msg = self::$message;
+    	$msg['action'] = 'save';
+    	$msg['params']['text'] = "Mon test insert par tests";
+    	$msg['params']['longitude'] = 5.700000;
+    	$msg['params']['latitude'] = 2.000000;
+    	$msg['params']['altitude'] = 2.30000;
+    	$msg['params']['hash'] = "FROMTESTUSER" . rand(1,20);
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
+*/
 
     public function testSearch() {
     	$msg = self::$message;
@@ -72,6 +85,17 @@ class WordsTest extends PHPUnit_Framework_TestCase {
     	$msg['params']['longitude'] = 5.700000;
     	$msg['params']['latitude'] = 2.000000;
     	$msg['params']['altitude'] = 2.30000;
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
+    
+    
+    
+     public function testTrashs() {
+    	$msg = self::$message;
+    	$msg['action'] = 'trash';
+    	$msg['params']['hash'] = "FROMTESTUSER" . rand(1,20);
+		$msg['params']['id'] = rand(1,10);
 		$query = json_encode($msg);
     	echo(curlPostQuery(self::$url, $query));
     }
