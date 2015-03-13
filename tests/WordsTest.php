@@ -99,6 +99,17 @@ class WordsTest extends PHPUnit_Framework_TestCase {
 		$query = json_encode($msg);
     	echo(curlPostQuery(self::$url, $query));
     }
+    
+    
+    
+    public function testBookmark() {
+    	$msg = self::$message;
+    	$msg['action'] = 'bookmark';
+    	$msg['params']['hash'] = "FROMTESTUSER" . rand(1,20);
+		$msg['params']['id'] = rand(1,10);
+		$query = json_encode($msg);
+    	echo(curlPostQuery(self::$url, $query));
+    }
 
 
     protected function tearDown() {
