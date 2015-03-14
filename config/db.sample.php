@@ -4,6 +4,7 @@
 	define('DB_USER', "..."); // replace ... by your user
 	define('DB_PASSWORD', "..."); // replace ... by your user
 	define('DB_NAME', "...");
+        define('DB_CHARSET', 'UTF8');
 	
 	  define('FRONT_URL', "http://urldevotreinstance");	
 

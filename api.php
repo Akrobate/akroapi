@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * @brief		ensemble des inclusions nécessaires a l'application
