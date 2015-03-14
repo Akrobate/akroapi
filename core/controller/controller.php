@@ -68,7 +68,7 @@ class Controller extends CoreController {
 			
 			// assignation et execution de l'objet enfant.
 			$this->assign('data', $obj->getArray());
-			
+						
 			$this->assign('action', $this->action);
 			$this->assign('module', $this->module);
 			$this->assign('result', $this->result);

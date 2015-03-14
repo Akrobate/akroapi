@@ -14,6 +14,6 @@
 	$ctr->setFormat("json");
 	
 	//debug
-	//print_r($ctr->getArray());
+	print_r($ctr->getArray());
 	
 	$ctr->renderJSON();

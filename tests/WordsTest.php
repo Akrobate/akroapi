@@ -4,8 +4,9 @@ include_once("tests/functions.php");
 
 class WordsTest extends PHPUnit_Framework_TestCase {
 
-	public static $url = "http://localhost/dropaword/";
+//	public static $url = "http://localhost/dropaword/";
 
+	public static $url = "http://89.156.94.6/dropaword/";
 	public static $message = array(
 		'action'=>'',
 		'module'=>'words'
@@ -39,7 +40,7 @@ class WordsTest extends PHPUnit_Framework_TestCase {
     	echo(curlPostQuery(self::$url, $query));
     }
     
-    
+    /*
     public function testSaveAnItem() {
     	$msg = self::$message;
     	$msg['action'] = 'save';
@@ -50,7 +51,7 @@ class WordsTest extends PHPUnit_Framework_TestCase {
     	$msg['params']['id_owner'] = 2;
 		$query = json_encode($msg);
     	echo(curlPostQuery(self::$url, $query));
-    }
+    }*/
     
 
     public function testSaveAndUserCreate() {
@@ -63,6 +64,7 @@ class WordsTest extends PHPUnit_Framework_TestCase {
     	$msg['params']['hash'] = "FROMTESTUSER" . rand(1,20);
 		$query = json_encode($msg);
     	echo(curlPostQuery(self::$url, $query));
+exit();
     }
 
 /*

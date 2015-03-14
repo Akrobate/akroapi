@@ -10,6 +10,7 @@
 class SimpleCoords {
 
 	
+	const EARTH_RADIUS = 6371000;
 	
 	/**
 	 * @brief		revoie les coordonnées des 4 points cardinaux augmenté de meters
@@ -20,13 +21,13 @@ class SimpleCoords {
 	 * @return    
 	 */
 	
-	public function getLargeCoords($lat, $long, $meters) {
+	public static function getLargeCoords($lat, $long, $meters) {
 
 		//	$lat = 45.815005; 
 		//	$long = 15.978501;
 		//	$meters = 500; //Number of meters to calculate coords for north/south/east/west
 
-		$equator_circumference = 6371000; //meters
+		$equator_circumference = self::EARTH_RADIUS; //meters
 		$polar_circumference = 6356800; //meters
 
 		$m_per_deg_long = 360 / $polar_circumference;
@@ -52,6 +53,24 @@ class SimpleCoords {
 		return $coordinates;
 		
 	}
+	
+	
+	public static function getDistance($latitude1, $longitude1, $latitude2, $longitude2) {  
+
+        $earth_radius = self::EARTH_RADIUS;
+          
+        $dLat = deg2rad($latitude2 - $latitude1);  
+        $dLon = deg2rad($longitude2 - $longitude1);  
+          
+        $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * sin($dLon/2) * sin($dLon/2);  
+        $c = 2 * asin(sqrt($a));  
+        $d = $earth_radius * $c;  
+          
+        return $d; 
+        
+    } 
+	
+	
 }
 
 	/**
