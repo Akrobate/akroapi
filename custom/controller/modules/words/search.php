@@ -52,6 +52,7 @@ class Modules_Words_Search extends CoreController {
 		$this->assign('found', $content);
 		$this->assign('nbr',  $orm->total);
 		$this->getCallerClass()->result = "success";
+		//$this->getCallerClass()->onDebug();
 	}
 
 }

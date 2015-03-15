@@ -17,6 +17,8 @@ class CoreController {
 	public $template;
 	public $data;
 	
+	public $debug = false;
+	
 	public $callerClass;
 	
 	public $params;
@@ -34,7 +36,7 @@ class CoreController {
 			$this->autoloadTemplate();
 		}
 	}
-	
+
 
 	/**
 	 *	Méthode destinée a gerer l'autolaod des js
@@ -185,6 +187,36 @@ class CoreController {
 		return $this->action;
 	}
 
+
+	/**
+	 *	@brief		On active le debug
+	 *	@return		
+	 */
+	 
+	public function onDebug() {
+		$this->debug = true;
+	}
+
+
+	/**
+	 *	@brief		On desactive le debug
+	 *	@return		
+	 */
+	 
+	public function offDebug() {
+		$this->debug = false;
+	}
+	
+	
+	
+	/**
+	 *	@brief		On desactive le debug
+	 *	@return		
+	 */
+	 
+	public function getDebug() {
+		return $this->debug;
+	}
 
 	/**
 	 *	@brief		Getteur de modules

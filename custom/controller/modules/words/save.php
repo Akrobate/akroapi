@@ -71,7 +71,7 @@ class Modules_Words_Save extends CoreController {
 			$this->getCallerClass()->result = "fail2";
 			$this->assign('id', $id);
 		}
-	
+		//$this->getCallerClass()->onDebug();
 	}
 
 }

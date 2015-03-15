@@ -5,15 +5,20 @@
 	
 	require_once("./api.php");
 	$rq = request::getPostJSON();
-	var_dump($rq);
+	
 	
 	$ctr = new Controller();
-	$ctr->setAction($rq->action);
-	$ctr->setModule($rq->module);
+	$ctr->setAction(@$rq->action);
+	$ctr->setModule(@$rq->module);
 	$ctr->setParams(@$rq->params);
 	$ctr->setFormat("json");
 	
+	$arr = $ctr->getArray();
+	
 	//debug
-	print_r($ctr->getArray());
+	if ($ctr->getDebug()) {
+		var_dump($rq);
+		print_r($arr);
+	}
 	
 	$ctr->renderJSON();
