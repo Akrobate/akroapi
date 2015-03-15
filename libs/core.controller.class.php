@@ -5,6 +5,12 @@
  *	
  *	@brief	Classe dont extends quasi tous les controlleurs de l'application
  *	
+ *	@details	Classe permettant servant de coquille a toutes les autres datas.
+ *				Certains comportement sont implementés en mode generique
+ *
+ *				Le code des classes héritantes est dans init() et preinit()
+ *				Toute forme de render execute le processus
+ *
  *	@author	Artiom FEDOROV
  *	@date	19/12/2014
  */
@@ -32,39 +38,8 @@ class CoreController {
 	 */
 
 	public function __construct() {
-		if ($this->format != 'json') {	
-			$this->autoloadTemplate();
-		}
-	}
-
-
-	/**
-	 *	Méthode destinée a gerer l'autolaod des js
-	 *
-	 *	@brief		Methode qui inclut les js dans les path par defaut
-	 *	@param		js	Prend en parametre le nom du script js a inclure
-	 *	@details	Prend le nom du js explode le nom de la classe pour 
-	 *				avoir le path et inclut le fichier js dans le chemin 
-	 *				equivalent pour les js
-	 */
-	 		
-	public function addJS($js = "")	{
-
-		if ($js == "") {
-
-			$classname = get_class($this);			
-			$action = $this->getAction();			
-			$exp = explode("_", strtolower($classname . "_" .$action));
-			$str = implode("/", $exp);
-			
-			if (file_exists(PATH_CORE_RESSOURCES_JS . $str . ".js")) {
-				ressources::addJs(URL_CORE_RESSOURCES_JS . $str . ".js");
-			}
-		} else {
-			ressources::addJs($js);
-		}
 		
-	}	
+	}
 
 
 	/**
@@ -86,33 +61,6 @@ class CoreController {
 
 	}
 
-
-	/**s
-	 *	Méthode destinée a gerer l'autolaod des templates
-	 *	@brief		Methode appelé par le render pour inclure le bon template
-	 *	@details	Prends le nom de la classe l'explode selon separateur _ et remplace par le separateur de chemin
-	 */
-	 
-	public function autoloadTemplate() {
-	
-		$classname = get_class($this);
-		$exp2 = explode("_", strtolower($classname));
-		$name = strtolower(array_pop($exp2));
-		$exp = explode("_", strtolower($classname));
-		$str = implode("/", $exp);
-		
-		// inclusion du template se fait toujours en commencant par custom puis core
-		if (file_exists(PATH_CUSTOM_VIEWS . $str . ".php")) {
-			$this->template = PATH_CUSTOM_VIEWS . $str . ".php";
-		} else {
-			if (file_exists(PATH_CORE_VIEWS . $str . ".php")) {
-				$this->template = PATH_CORE_VIEWS . $str . ".php";
-			} else {
-				$this->template = PATH_CORE_VIEWS . 'module/' . $name . ".php";
-			}
-		}
-	}
-	
 	
 	/**
 	 *	@brief		Setteur d'Action
@@ -307,15 +255,7 @@ class CoreController {
 				$content = $this->getJsonDataForApi();
 				echo($content);
 			}
-		} else {
-			ob_start();
-			if (count($this->data)){
-				extract($this->data);
-			}
-			include($this->template);
-			$content = ob_get_contents();
-			ob_end_clean();
-		}
+		} 
 		return $content;
 	}
 
@@ -371,7 +311,7 @@ class CoreController {
 
 	/**
 	 *	@brief	Methode permettant de render du json
-	 *
+	 *	
 	 */
 
 	public function getJsonDataForApi() {
