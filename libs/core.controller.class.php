@@ -286,6 +286,16 @@ class CoreController {
 	}
 
 
+	/**
+	 *	@brief		Méthode renvoi data
+	 *	@return 	renvoi array
+	 *
+	 */
+	 
+	public function getData() {
+		return $this->data;
+	}
+
 
 	/**
 	 *	@brief		Méthode qui execute l'ensemble du processus
