@@ -13,12 +13,15 @@
 	$ctr->setParams(@$rq->params);
 	$ctr->setFormat("json");
 	
-	$arr = $ctr->getArray();
 	
 	//debug
 	if ($ctr->getDebug()) {
+		
+		$arr = $ctr->getArray();
+	
 		var_dump($rq);
 		print_r($arr);
-	}
+	} else {
 	
-	$ctr->renderJSON();
+		$ctr->renderJSON();
+	}
