@@ -26,6 +26,8 @@ class sql extends sqlAdvanced{
 		$connect_handler = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 		mysql_select_db(DB_NAME, $connect_handler);
 		self::$connect_handler = $connect_handler;
+		self::query ('SET CHARACTER SET '. DB_CHARSET);
+
 		return self::$connect_handler;
 	}
 
