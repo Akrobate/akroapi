@@ -1,11 +1,15 @@
 <?php
 
+
+
 	// DO NOT FORGET: "LESS IS MORE"
 	session_start();
 	
 	require_once("./api.php");
 	$rq = request::getPostJSON();
 	
+
+	file_put_contents ("console.log", print_r($rq,1),  FILE_APPEND);
 	
 	$ctr = new Controller();
 	$ctr->setAction(@$rq->action);
@@ -25,3 +29,7 @@
 	
 		$ctr->renderJSON();
 	}
+
+
+        file_put_contents ("console.log", print_r($ctr->getData(),1),  FILE_APPEND);
+
