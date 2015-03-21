@@ -46,7 +46,7 @@ class Modules_Words_Search extends CoreController {
 							 AND (latitude <= '{$enlargedCoords['north']['lat']}')
 							 AND (latitude >= '{$enlargedCoords['south']['lat']}') ");
 		
-		$orm->start_limit = 2;
+		$orm->start_limit = 1;
 		$orm->nbr_limit = 1;
 		
 		$content = $orm->getAllData($this->getModule(), $listFields);
