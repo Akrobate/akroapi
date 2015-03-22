@@ -60,6 +60,28 @@ class request {
 		} else {
 			return null;
 		}
-	}	
+	}
+	
+
+	public static function ut8ParamsEncode($params) {
+	
+		$params_out = array();
+		
+		foreach ($params as $k => $v) {
+
+			if (is_string($v)) {
+				$v = utf8_encode($v);
+			}
+			
+			$params_out[$k] = $v
+			
+		} 
+		return $params_out;
+	}
+
+	
+	
+	
+	
 
 }

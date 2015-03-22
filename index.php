@@ -14,7 +14,7 @@
 	$ctr = new Controller();
 	$ctr->setAction(@$rq->action);
 	$ctr->setModule(@$rq->module);
-	$ctr->setParams(@$rq->params);
+	$ctr->setParams(request::ut8ParamsEncode(@$rq->params));
 	$ctr->setFormat("json");
 	
 	
@@ -30,6 +30,5 @@
 		$ctr->renderJSON();
 	}
 
-
-        file_put_contents ("console.log", print_r($ctr->getData(),1),  FILE_APPEND);
+	file_put_contents ("console.log", print_r($ctr->getData(),1),  FILE_APPEND);
 
