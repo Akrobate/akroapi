@@ -73,7 +73,7 @@ class request {
 				$v = utf8_encode($v);
 			}
 			
-			$params_out[$k] = $v
+			$params_out[$k] = $v;
 			
 		} 
 		return $params_out;
