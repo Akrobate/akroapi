@@ -60,6 +60,9 @@ class Modules_Words_Save extends CoreController {
 			$data['id'] = $id;
 		}
 
+		// Encodage utf necessaire
+		$data['text'] = utf8_encode($data['text']);
+
 		$rez = $orm->upsert($this->getModule(), $allFields, $data);	
 
 		// Si id est set tout s'est bien passé		
