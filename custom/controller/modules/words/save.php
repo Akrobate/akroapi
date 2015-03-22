@@ -62,7 +62,9 @@ class Modules_Words_Save extends CoreController {
 
 		// Encodage utf necessaire
 		$data['text'] = utf8_encode($data['text']);
-
+		
+		$data['created'] = date("Y-m-d H:i:s", time());
+		
 		$rez = $orm->upsert($this->getModule(), $allFields, $data);	
 
 		// Si id est set tout s'est bien passé		
