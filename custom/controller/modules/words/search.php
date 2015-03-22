@@ -44,7 +44,7 @@ class Modules_Words_Search extends CoreController {
 							 AND (longitude <= '{$enlargedCoords['east']['long']}') 
 							 AND (longitude >= '{$enlargedCoords['west']['long']}') 		
 							 AND (latitude <= '{$enlargedCoords['north']['lat']}')
-							 AND (latitude >= '{$enlargedCoords['south']['lat']}') ");
+							 AND (latitude >= '{$enlargedCoords['south']['lat']}') ORDER BY created DESC ");
 		
 //		$orm->start_limit = 1;
 //		$orm->nbr_limit = 1;
