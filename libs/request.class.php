@@ -69,9 +69,9 @@ class request {
 		
 		foreach ($params as $k => $v) {
 
-			if (is_string($v)) {
+		/*	if (is_string($v)) {
 				$v = utf8_encode($v);
-			}
+			} */
 			
 			$params_out[$k] = $v;
 			
