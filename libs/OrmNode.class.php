@@ -21,6 +21,8 @@ class OrmNode extends DataAdapter {
 	public $nbr_limit;
 	public $total;
 	
+	//
+	public $disable_limits = false;
 	
 	/**
 	 *	@brief	Constructeur de classe
@@ -158,7 +160,10 @@ class OrmNode extends DataAdapter {
 
 		sql::query($query);
 		$this->total = sql::nbrRows();
-		$query .= " LIMIT  " . $this->start_limit . ", " . $this->nbr_limit;
+		
+		if ($this->disable_limits == false) {
+			$query .= " LIMIT  " . $this->start_limit . ", " . $this->nbr_limit;
+		}
 		sql::query($query);
 		$data_origin = sql::allFetchArray();
 		$data_to = array();
