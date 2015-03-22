@@ -1,9 +1,16 @@
 <?php
 
 
-
 	// DO NOT FORGET: "LESS IS MORE"
+
+	header('Content-Type: text/html; charset=utf-8');
+
+	date_default_timezone_set("Europe/Paris"); 
 	session_start();
+
+//	mb_internal_encoding("UTF-8");
+
+//	 mb_http_output( "UTF-8" );
 	
 	require_once("./api.php");
 	$rq = request::getPostJSON();
@@ -14,7 +21,10 @@
 	$ctr = new Controller();
 	$ctr->setAction(@$rq->action);
 	$ctr->setModule(@$rq->module);
-	$ctr->setParams(request::ut8ParamsEncode(@$rq->params));
+//	$ctr->setParams(request::ut8ParamsEncode(@$rq->params));
+
+	$ctr->setParams(@$rq->params);
+
 	$ctr->setFormat("json");
 	
 	
