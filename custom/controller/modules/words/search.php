@@ -48,7 +48,7 @@ class Modules_Words_Search extends CoreController {
 		
 //		$orm->start_limit = 1;
 //		$orm->nbr_limit = 1;
-		$content = $orm->getAllData->disable_limits = true;
+		$content = $orm->disable_limits = true;
 		$content = $orm->getAllData($this->getModule(), $listFields);
 		//$this->total =;
 		
