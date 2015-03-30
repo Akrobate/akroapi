@@ -55,6 +55,15 @@ class SimpleCoords {
 	}
 	
 	
+	/**
+	 * @brief		Calcul la distance entre deux points coords
+	 * @details		     
+	 * @param	
+	 * @param	
+	 * @param	
+	 * @return
+	 */
+	 
 	public static function getDistance($latitude1, $longitude1, $latitude2, $longitude2) {  
 
         $earth_radius = self::EARTH_RADIUS;
@@ -73,11 +82,4 @@ class SimpleCoords {
 	
 }
 
-	/**
-	 * @brief		Réalise une redirection header 301
-	 * @details		Peut etre appelé depuis le controlleur          
-	 * @param	controller		Nom du controlleur verss lequel on redirige
-	 * @param	action			Nom de l'action visée
-	 * @param	id				id (optionnel)
-	 * @return    null
-	 */
+
