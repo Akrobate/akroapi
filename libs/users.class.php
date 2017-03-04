@@ -31,7 +31,7 @@ class users {
 	 */
 	
 	public static function issetId() {
-		return isset($_SESSION['user']['id']);
+		return isset(session::$data['user']['id']);
 	}
 	
 	
@@ -43,7 +43,7 @@ class users {
 	 */
 	
 	public static function getId() {
-		return $_SESSION['user']['id'];
+		return session::$data['user']['id'];
 	}
 	
 	
@@ -61,22 +61,26 @@ class users {
 		if( (ADMIN_LOGIN == $login) && (ADMIN_PASSWORD == $pw)) {		
 			// Si l'utilisateur est admin alors on charge sa conf de manière artificielle (avec des fichiers)
 			self::$connected = true;
-			$_SESSION['user']['connected'] = true;
+			session::$data['user']['connected'] = true;
 			return true;
 		} else {
 			// verification si l'utilisateur existe en base.
-			sql::query("SELECT * FROM users WHERE login='".$login."' AND password='".$pw."'");
+			sql::query("SELECT * FROM users WHERE email='".$login."' AND password='".$pw."'");
 			if ($user = sql::fetchArray()) {
 				self::$connected = true;
 				self::$me = $user;
-				$_SESSION['user'] = self::$me;
-				$_SESSION['user']['connected'] = true;
-				self::getProfile();
+				session::$data['user'] = self::$me;
+				session::$data['user']['connected'] = true;
+				//self::getProfile();
+				$profile = self::loadProfile();
+				
+				//print_r($profile);
+				
 				return true;
 			} else {
 				self::$connected = false;
-				unset($_SESSION['user']);
-				unset($_SESSION['profile']);
+				unset(session::$data['user']);
+				unset(session::$data['profile']);
 				return false;	
 			}
 		}
@@ -91,8 +95,8 @@ class users {
 	 */
 	 		
 	public static function getMe() {
-		if (isset($_SESSION['user'])) {
-			self::$me = $_SESSION['user'];
+		if (isset(session::$data['user'])) {
+			self::$me = session::$data['user'];
 		}
 		return self::$me;
 	}
@@ -107,8 +111,8 @@ class users {
 	
 	public static function getProfile() {
 	
-		if (isset($_SESSION['profile'])) {
-			self::$profile = $_SESSION['profile'];
+		if (isset(session::$data['profile'])) {
+			self::$profile = session::$data['profile'];
 		} else {
 			self::loadProfile();
 		}
@@ -126,21 +130,31 @@ class users {
 	public static function loadProfile() {
 		
 		if(self::$connected == true) {
-			if( (self::$me['login'] == ADMIN_LOGIN)) {		
-				// Include profile prochainement ici
-			} else {
-				sql::query("SELECT * FROM profiles WHERE id = " . self::$me['id_profil'] );
-				if ($profile = sql::fetchArray()) {			
-					eval($profile['view']);
-					self::$profile['view'] = $view;
-					$_SESSION['profile'] = self::$profile;
-				} else {
-					return false;
-				}
+			sql::query("SELECT * FROM acl  
+							LEFT JOIN groupsusers AS gu ON acl.id_group = gu.id_group
+							LEFT JOIN aclgroups ag ON acl.id_group = ag.id 
+								WHERE acl.access = 'public' OR
+									 acl.access = 'granted' AND 
+									 gu.id_user = " . self::getId());
+		} else {
+			sql::query("SELECT * FROM acl  
+							LEFT JOIN groupsusers AS gu ON acl.id_group = gu.id_group
+							LEFT JOIN aclgroups ag ON acl.id_group = ag.id 
+								WHERE acl.access = 'public'");
+								
+			if (sql::errorNo()) {
+				echo(sql::error());
 			}
 		}
-	}	
-		
+			
+		self::$profile = array();
+		while($profile = sql::fetchAssoc()) {			
+			self::$profile[] = $profile;
+		}
+		session::$data['profile'] = self::$profile;
+		return self::$profile;			
+	}
+	
 	
 	/**
 	 * @brief		Methode de déconnection
@@ -150,8 +164,8 @@ class users {
 	 */
 
 	public static function logout() {
-		unset($_SESSION['user']);
-		unset($_SESSION['profile']);
+		unset(session::$data['user']);
+		unset(session::$data['profile']);
 		self::$connected = false;
 		return true;
 	}
@@ -167,12 +181,13 @@ class users {
 	 */
 
 	public static function isConnected() {
-		if (@$_SESSION['user']['connected'] == true) {
+		if (@session::$data['user']['connected'] == true) {
 			self::$connected = true;
 			return true;
 		} else {
 			self::$connected = false;
-			return self::tryToConnect();
+			return false;
+			// return self::tryToConnect();
 		}
 	}
 	
