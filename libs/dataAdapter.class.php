@@ -1,4 +1,4 @@
-<?
+<?php
 	
 /**
  *	Classe d'adaptation des datas en leur présentation finale
@@ -136,16 +136,29 @@ class DataAdapter {
 	/**
 	 *	Renvoie le typeSQL en fonction de types
 	 *  array('text', 'join', 'largetext', 'photourl', 'date');
+	 *
+	 *
+	 *	sessionid
+	 *
 	 */
 
 	public static function getSqlTypeFromStdType($type) {
 		$resp = "";
 		switch ($type) {
+			case "textid64":
+				$resp = "VARCHAR(64)";
+				break;
+			case "bigvarchar":
+				$resp = "VARCHAR(21581)";
+				break;
 			case "text":
 				$resp = "VARCHAR(255)";
 				break;
 			case "largetext":
 				$resp = "TEXT";
+				break;
+			case "smalltext":
+				$resp = "VARCHAR(25)";
 				break;
 			case "photourl":
 				$resp = "VARCHAR(255)";
@@ -157,7 +170,7 @@ class DataAdapter {
 				$resp = "DATETIME";
 				break;	
 			case "coords":
-				$resp = "DECIMAL(9,6)";
+				$resp = "DECIMAL(17,14)";
 				break;
 			case "altitude":
 				$resp = "DECIMAL(9,5)";
@@ -165,6 +178,12 @@ class DataAdapter {
 			case "androidid":
 				$resp = "VARCHAR(64)";
 				break;	
+			case "int":
+				$resp = "INT(11)";
+				break;				
+			case "price":
+				$resp = "DECIMAL(10,2)";
+				break;						
 			case "join":
 				$resp = "INT(11)";
 				break;						
