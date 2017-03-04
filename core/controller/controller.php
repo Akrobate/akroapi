@@ -30,14 +30,17 @@ class Controller extends CoreController {
 	 */
 
 	public function init() {
-	
-	
-		if($this->ModuleAndActionExists()) {
-			$this->ProcessIt();
+		if ($this->isPublicMethodAction($this->module, $this->action)) {
+			if($this->ModuleAndActionExists()) {
+				$this->ProcessIt();
+			} else {
+				$this->assignSeflVariables();
+			}
 		} else {
-			$this->ModuleOrActionNotFound();
+			$this->result = "Not fount or not authorized";
+			$this->errorId = 404;
+			$this->assignSeflVariables();
 		}
-		
 	}
 	
 	
@@ -67,32 +70,46 @@ class Controller extends CoreController {
 			CoreController::share($this, $obj);
 			
 			// assignation et execution de l'objet enfant.
+			
 			$this->assign('data', $obj->getArray());
-						
-			$this->assign('action', $this->action);
-			$this->assign('module', $this->module);
-			$this->assign('result', $this->result);
-			$this->assign('errorId', $this->errorId);			
+			$this->assignSeflVariables();	
 			
 		}
 
 	}
 	
 	
+	/**
+	 *
+	 *	Methode qui verifie si la methode API est publique
+	 *	
+	 *	ACL
+	 */
+	 
+	 public function isPublicMethodAction($moduleName, $actionName) {
+	 	$profile = users::getProfile();
+	 	foreach($profile as $acl) {
+	 		if (($acl['module'] == $moduleName) && ($acl['action'] == $actionName)) {
+	 			return true;
+	 		}
+	 	}
+	 	return false;
+	 }
+	
+	
 	
 	/**
-	 *	@brief methode appelé quand l'utilisateur est n'est pas connecté
+	 *	@brief methode
 	 */
-	
-	public function ModuleOrActionNotFound() {
+		
+	public function assignSeflVariables() {
 	
 		$this->assign('action', $this->action);
 		$this->assign('module', $this->module);
 		$this->assign('result', $this->result);
 		$this->assign('errorId', $this->errorId);
+	
 	}
-	
-	
 	
 	
 	
