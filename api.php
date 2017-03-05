@@ -14,20 +14,16 @@ if (!defined ( "PATH_CURRENT" ) ) {
 	define ("PATH_CURRENT", "." . PATH_SEP );
 }
 
-
 define ("PATH_CONFIGS", PATH_CURRENT. "config" . PATH_SEP);
 define ("PATH_LIBS", PATH_CURRENT . "libs" . PATH_SEP );
-define ("LIBS_PATH", PATH_CURRENT . "libs" . PATH_SEP );
-define ("PATH_FONTS", PATH_CURRENT."public" . PATH_SEP . "fonts" . PATH_SEP);
-define ("PATH_MODULES", PATH_CURRENT . "modules" . PATH_SEP );
 define ("PATH_CORE", PATH_CURRENT . "core" . PATH_SEP );
 define ("PATH_CORE_CONTROLLER", PATH_CORE . "controller" . PATH_SEP );
-define ("PATH_CORE_STD_MODULES", PATH_CORE_CONTROLLER . "module" .PATH_SEP );
-define ("PATH_CORE_VIEWS", PATH_CORE . "views" . PATH_SEP );
-define ("PATH_CUSTOM", PATH_CURRENT. "custom" . PATH_SEP);
-define ("PATH_CUSTOM_CONTROLLER", PATH_CUSTOM . "controller" . PATH_SEP);
-define ("PATH_CUSTOM_VIEWS", PATH_CUSTOM . "views" . PATH_SEP);
 define ("PATH_CORE_INTERNAL_MODULES", PATH_CORE . "internalmodules" . PATH_SEP );
+
+define ("PATH_CUSTOM", PATH_CURRENT. "custom" . PATH_SEP);
+define ("PATH_MODULES", PATH_CURRENT . "modules" . PATH_SEP );
+define ("PATH_CUSTOM_CONTROLLER", PATH_CUSTOM . "controller" . PATH_SEP);
+
 
 define ("ADMIN_LOGIN", "admin");
 define ("ADMIN_PASSWORD", "admin");

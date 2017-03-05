@@ -25,13 +25,15 @@ class Module_View extends CoreController {
 
 		public function init() {
 
-			$this->id = request::get('id');
+
+            $params = $this->getParams();
+
+			$this->id = $params->id;
 			$id = $this->id;
 			$this->assign('id', $id);
 
 			// Pour le titre du module
 			$mainmodule = $this->getModule();
-			$this->assign('mainmodule', ucfirst($mainmodule));
 
 			// On recupere la liste des champs pour mainmodule
 			$fields = OrmNode::getFieldsFor($mainmodule);
@@ -39,18 +41,13 @@ class Module_View extends CoreController {
 			// On recupere toutes les datas
 			$data = array();
 			$orm = new OrmNode();
-			$content = $orm->getData($this->getModule(), $id);
+			$data = $orm->getData($this->getModule(), $id);
 
-			$data = OrmNode::dataFieldsAdapter($content, $fields, 'view', 'rendered');
+			$this->assign('properties', $data);
+			// $lists = $this->getMySublists();
+            // $lists = $this->getMySublists();
 
-			$this->assign('fields', $data);
-			$dataApi['fields'] = $content;
-
-			$lists = $this->getMySublists();
-			$dataApi['sublists'] = $lists;
-
-			$this->assign('sublists', $lists);
-			$this->assign('datasForApi', $dataApi);
+            // $this->assign('sublists', $lists);
             $this->getCallerClass()->result = "success";
 
 		}

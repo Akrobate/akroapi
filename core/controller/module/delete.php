@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Generic delete CoreController
+ * id is required in pg_parameters
+ *
+ */
+
 class Module_Delete extends CoreController {
 
 	public function init() {
-		$id = request::get('id');
-		sql::query('DELETE FROM ' . $this->getModule() . " WHERE id = " . $id);
-		url::redirect($this->getModule(), 'index');
+        $params = $this->getParams();
+        if (isset($params->id)) {
+            $id = $params->id;
+            sql::query('DELETE FROM ' . $this->getModule() . " WHERE id = " . $id);
+        }
 	}
 }

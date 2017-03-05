@@ -12,6 +12,7 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
 
     public static $testitem_id = null;
     public static $comparation_token = "Text to save while testing";
+    public static $comparation_edition_token = "Edition text to save while testing";
 
 
 	//public static $idOfLocationForCRUDTest = 5;
@@ -29,43 +30,93 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
 
      public function testTestItemAddItem() {
     	$this->connect();
-
-        var_dump( self::$token);
-
+        // var_dump( self::$token);
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('testtext'=>self::$comparation_token), self::$token);
-
         $this->assertEquals(200, $answer->errorId);
-
         self::$testitem_id = $answer->data->id;
-        var_dump(self::$testitem_id);
-        //$this->assertEquals( self::$nbrTestItemTotal, count($answer->data->testitem));
+        // var_dump(self::$testitem_id);
     	$this->disconnect();
     }
 
 
    	/**
-	 *	On Connecte l'utilisateur et on recuper les skills
-	 *	users / access
+	 *	Check the element is added and data match
 	 *
 	 */
 
      public function testTestItemViewCreated() {
     	$this->connect();
-        // var_dump( self::$token);
-        //
-
-        echo("================");
-        echo(self::$testitem_id);
-        echo("================");
-
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
-        // $data = $answer->data->listContent[0];
-        //print_r($data);
-        var_dump($answer);
+        $data = $answer->data->properties;
+        // print_r($data);
+        // var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
-        // $this->assertEquals($data->testtext, self::$comparation_token);
+        $this->assertEquals($data->testtext, self::$comparation_token);
     	$this->disconnect();
     }
+
+
+    /**
+	 *	Update ItemTest
+	 *
+	 */
+
+     public function testTestItemUpdate() {
+    	$this->connect();
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('id'=>self::$testitem_id, 'testtext'=>self::$comparation_edition_token), self::$token);
+        // $data = $answer->data->properties;
+        // print_r($data);
+        // var_dump($answer);
+        $this->assertEquals(200, $answer->errorId);
+        $this->assertEquals("success", $answer->result);
+    	$this->disconnect();
+    }
+
+
+    /**
+	 *	Editing ItemTest
+	 *
+	 */
+
+     public function testTestItemViewUpdated() {
+    	$this->connect();
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
+        $data = $answer->data->properties;
+        // print_r($data);
+        // var_dump($answer);
+        $this->assertEquals(200, $answer->errorId);
+        $this->assertEquals($data->testtext, self::$comparation_edition_token);
+    	$this->disconnect();
+    }
+
+
+    /**
+	 *	Deleting ItemTest
+	 *
+	 */
+
+     public function testTestItemDelete() {
+    	$this->connect();
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'delete', array('id'=>self::$testitem_id), self::$token);
+        $this->assertEquals(200, $answer->errorId);
+    	$this->disconnect();
+    }
+
+
+    /**
+	 *	Checking deletion ItemTest
+	 *	
+	 */
+
+     public function testTestItemViewDeleted() {
+    	$this->connect();
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
+        //var_dump($answer);
+        $this->assertEquals(null, $answer->data->properties);
+        $this->assertEquals(200, $answer->errorId);
+    	$this->disconnect();
+    }
+
 
     protected function tearDown() {
 
