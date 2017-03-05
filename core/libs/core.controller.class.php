@@ -355,7 +355,7 @@ class CoreController {
 	 *	@details	Methode qui determine si le fichier d'une classe existe
 	 *				Selon la regle suivante: les séparateurs type "_" sont les separateurs de dossier: '/'
 	 *				puis le tout est ramené en minuscules, puis on cherche l'existance d'abord 
-	 *				dans PATH_CORE_CONTROLLER puis dans PATH_CUSTOM_CONTROLLER
+	 *				dans PATH_CORE_CONTROLLER puis dans PATH_CONTROLLER
 	 *
 	 *	@return		bool	Renvoi vrai si inclusion reussi et false sinon
 	 */
@@ -372,7 +372,7 @@ class CoreController {
 		
 		if (file_exists(PATH_CORE_CONTROLLER . $path . $filename . '.php')) {
 			return true;
-		} elseif (file_exists(PATH_CUSTOM_CONTROLLER . $path . $filename . '.php')) {
+		} elseif (file_exists(PATH_CONTROLLER . $path . $filename . '.php')) {
 			return true;
 		} else {
 			return false;

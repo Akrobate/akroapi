@@ -1,6 +1,14 @@
 <?php
 
+require_once("./api.php");
 
+$server = new Server();
+$server->run();
+
+
+
+
+/*
 	// DO NOT FORGET: "LESS IS MORE"
 
 	header('Content-Type: text/html; charset=utf-8');
@@ -42,3 +50,4 @@
 	session::writeclose($token);
 
 	//	file_put_contents ("console.log", print_r($ctr->getData(),1),  FILE_APPEND);
+*/

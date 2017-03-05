@@ -57,13 +57,13 @@ if ($module == "") {
 
 
 // On verifie si le dossier existe:
-if (file_exists(PATH_CUSTOM_CONTROLLER .  'modules/' . $module)) {
+if (file_exists(PATH_CONTROLLER .  'modules/' . $module)) {
 	echo("exists\n");
 } else {
 	echo("Do not exists \n");
 	echo("Creating \n");
-	echo(PATH_CUSTOM_CONTROLLER .  'modules/' . $module . "\n");
-	mkdir(PATH_CUSTOM_CONTROLLER .  'modules/' . $module);
+	echo(PATH_CONTROLLER .  'modules/' . $module . "\n");
+	mkdir(PATH_CONTROLLER .  'modules/' . $module);
 }
 
 
@@ -72,7 +72,7 @@ foreach($actions as $action) {
 	$coreName = 'Module_' . ucfirst($action);
 	$customName = 'Modules_' . ucfirst($module) . "_" . ucfirst($action);	
 	$str = str_replace($coreName, $customName, $str);
-	file_put_contents(PATH_CUSTOM_CONTROLLER .  'modules/' . $module . "/" . $action . ".php", $str);
+	file_put_contents(PATH_CONTROLLER .  'modules/' . $module . "/" . $action . ".php", $str);
 	echo($customName . "\n");
 }
 

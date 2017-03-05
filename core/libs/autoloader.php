@@ -21,8 +21,8 @@ spl_autoload_register(function ($class) {
 		}
 	}
 	
-	if (file_exists(PATH_CUSTOM_CONTROLLER . $path . $filename . '.php')){
-		include PATH_CUSTOM_CONTROLLER . $path . $filename . '.php';
+	if (file_exists(PATH_CONTROLLER . $path . $filename . '.php')){
+		include PATH_CONTROLLER . $path . $filename . '.php';
 	} else if (file_exists(PATH_CORE_CONTROLLER . $path . $filename . '.php')) {
 		include PATH_CORE_CONTROLLER . $path . $filename . '.php';
 	}  
