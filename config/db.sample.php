@@ -1,4 +1,4 @@
-<?
+<?php
 
 	define('DB_HOST', "..."); // replace ... by your host
 	define('DB_USER', "..."); // replace ... by your user
