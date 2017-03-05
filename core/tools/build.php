@@ -2,18 +2,18 @@
 
 /**
  *	Script de build du CRM
- *	
+ *
  *	@brief		Script permettant de builder toutes les tables dans modules
  *	@details	Script permettant de builder toutes les tables dans modules
  *				Sauf les internal tables
  *
  *	@usage		clear;php build.php --create
- *	
+ *
  *	@author 	Artiom FEDOROV
  */
- 
-define('PATH_CURRENT', "../");
-require_once("../api.php");
+
+define('PATH_CURRENT', "./");
+require_once("./api.php");
 $dirs = scandir(PATH_MODULES);
 error_reporting(15);
 $tree = array();
@@ -28,25 +28,25 @@ if (in_array("--create", $argv)) {
 	foreach($dirs as $dir) {
 		if (sql::tableExists($dir)) {
 			sql::removeTable($dir);
-		}		
+		}
 		unset($fields);
-		unset($table);		
+		unset($table);
 		$toinclude = PATH_MODULES . $dir . PATH_SEP ."fields.php";
 		include($toinclude);
 		$tree[$dir] = $fields;
 
-		//	Creation des tables		
+		//	Creation des tables
 		// Si parametres de table ont été précisés
 		if (isset($table)) {
 			sql::createTable($dir, $fields, $table);
-		} else { 
+		} else {
 			sql::createTable($dir, $fields);
 		}
-	
+
 		echo(" creation: ok -- \n");
 
 		//	Initialise la base avec les vrais index
-		
+
 		if (isset($indexqueries)) {
 			foreach($indexqueries as $indexQuery) {
 				sql::query($indexQuery);
@@ -61,7 +61,7 @@ if (in_array("--create", $argv)) {
 			}
 			unset($indexqueries);
 		}
-		
+
 	}
 }
 
@@ -73,7 +73,7 @@ if (in_array("--initdb", $argv)) {
 	foreach($dirs as $dir) {
 		if (file_exists(PATH_MODULES . $dir . PATH_SEP ."initdb.sql")) {
 			$query = file_get_contents(PATH_MODULES . $dir . PATH_SEP ."initdb.sql");
-			
+
 			if (trim($query) != "") {
 				sql::query($query);
 				if (sql::errorNo()) {
@@ -87,4 +87,3 @@ if (in_array("--initdb", $argv)) {
 		}
 	}
 }
-

@@ -1,1 +1,0 @@
-{"action":"getwords","result":"success","errorId":200,"data":{"words":[{"id":24,"text":"Test rapide"},{"id":25,"text":"Test rapide 2"}]}}
