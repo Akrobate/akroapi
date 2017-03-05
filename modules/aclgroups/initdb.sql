@@ -1,4 +1,4 @@
-INSERT INTO `realtimejobbing`.`aclgroups` (
+INSERT INTO `aclgroups` (
 `id`,
 `name` ,
 `created`

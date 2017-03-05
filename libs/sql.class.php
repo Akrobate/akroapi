@@ -23,8 +23,8 @@ class sql extends sqlAdvanced{
 	 */
 	 
 	public static function connect() {
-		$connect_handler = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-		mysql_select_db(DB_NAME, $connect_handler);
+		$connect_handler = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+		mysqli_select_db($connect_handler, DB_NAME);
 		self::$connect_handler = $connect_handler;
 		self::query ('SET CHARACTER SET '. DB_CHARSET);
 
@@ -45,9 +45,30 @@ class sql extends sqlAdvanced{
 			if (self::$connect_handler == null) {
 				self::connect();
 			}
-			self::$query_result = mysql_query($query, self::$connect_handler);
+			self::$query_result = mysqli_query(self::$connect_handler, $query);
 		} else {
-			self::$query_result = mysql_query($query, $connect_handler);
+			self::$query_result = mysqli_query($connect_handler, $query);
+		}
+		return self::$query_result;
+	}
+
+	/**
+	 * @brief		Méthode d'execution de requetes
+	 * @details		Execute la requette 
+	 *				DB_HOST, DB_USER, DB_PASSWORD
+	 *				Le pointeur de la requete est renvoyé et stocké au niveau du singleton
+	 * @return	query_result	Renvoie le resultat de la requette a fetcher
+
+	 */
+	 
+	public static function multiQuery($query, $connect_handler = NULL) {
+		if ($connect_handler == null) {
+			if (self::$connect_handler == null) {
+				self::connect();
+			}
+			self::$query_result = mysqli_multi_query(self::$connect_handler, $query);
+		} else {
+			self::$query_result = mysqli_multi_query($connect_handler, $query);
 		}
 		return self::$query_result;
 	}
@@ -61,11 +82,27 @@ class sql extends sqlAdvanced{
 	
 	public static function allFetchArray() {
 		$data = array();
-		while ($return = @mysql_fetch_array(self::$query_result)) {
+		while ($return = @mysqli_fetch_array(self::$query_result)) {
 			$data[] = $return;
 		}
 		return $data;
 	}
+	
+	
+	/**
+	 * @brief		Methode qui renvoie tous les resultats de la requete
+	 * @details		Fetch l'ensemble de la requete avec la méthode fetch_array
+	 * @return	Array	Renvoi tous les résultats de la requete
+	 */
+	
+	public static function allFetchAssoc() {
+		$data = array();
+		while ($return = self::fetchAssoc()) {
+			$data[] = $return;
+		}
+		return $data;
+	}
+	
 	
 	
 	/**
@@ -75,7 +112,18 @@ class sql extends sqlAdvanced{
 	 */
 	
 	public static function fetchArray() {
-		return mysql_fetch_array(self::$query_result);
+		return mysqli_fetch_array(self::$query_result);
+	}
+
+	/**
+	 * @brief		Methode qui renvoie un resultat de la requete
+
+	 * @details		Fetch de la requete avec la méthode fetch_array
+	 * @return	Array	Renvoi le resultat courant de la requete
+	 */
+	
+	public static function fetchAssoc() {
+		return mysqli_fetch_assoc(self::$query_result);
 	}
 
 
@@ -86,7 +134,7 @@ class sql extends sqlAdvanced{
 	 */
 	 
 	public static function nbrRows() {
-		return @mysql_num_rows(self::$query_result);
+		return @mysqli_num_rows(self::$query_result);
 	}
 
 
@@ -97,7 +145,7 @@ class sql extends sqlAdvanced{
 	 */
 	 
 	public static function lastId() {
-		return mysql_insert_id() ;
+		return mysqli_insert_id(self::$connect_handler) ;
 	}
 
 
@@ -113,7 +161,7 @@ class sql extends sqlAdvanced{
 		if (self::$connect_handler == null) {
 			self::connect();
 		}
-		return mysql_real_escape_string($string);
+		return mysqli_real_escape_string(self::$connect_handler, $string);
 	}
 
 
@@ -145,4 +193,17 @@ class sql extends sqlAdvanced{
 	public static function display($var) {	
 		self::$display = $var;
 	}
+	
+	
+	public static function errorNo() {
+		return mysqli_errno(self::$connect_handler);
+	}
+	
+	public static function error() {
+		return mysqli_errno(self::$connect_handler)." : ".mysqli_error(self::$connect_handler);
+	}
+	
+	
+	
+	
 }

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-php ./tests/phpunit.phar ./tests/
+cd tests/; php phpunit.phar .
 

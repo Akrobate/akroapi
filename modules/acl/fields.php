@@ -35,5 +35,5 @@ $fields['created']['label'] = 'Date de creation';
 
 
 $indexqueries = array();
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`acl` ADD INDEX `id_group` ( id_group );";
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`acl` ADD INDEX `access` ( `access` );";
+$indexqueries[] = "ALTER TABLE `acl` ADD INDEX `id_group` ( id_group );";
+$indexqueries[] = "ALTER TABLE `acl` ADD INDEX `access` ( `access` );";

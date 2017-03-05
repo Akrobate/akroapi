@@ -29,9 +29,6 @@ define ("PATH_CUSTOM_CONTROLLER", PATH_CUSTOM . "controller" . PATH_SEP);
 define ("PATH_CUSTOM_VIEWS", PATH_CUSTOM . "views" . PATH_SEP);
 define ("PATH_CORE_INTERNAL_MODULES", PATH_CORE . "internalmodules" . PATH_SEP );
 
-define ("PATH_CORE_RESSOURCES_JS", PATH_CORE . "ressources" . PATH_SEP . "js". PATH_SEP);
-define ("URL_CORE_RESSOURCES_JS", "core" . PATH_SEP . "ressources" . PATH_SEP . "js". PATH_SEP);
-
 define ("ADMIN_LOGIN", "admin");
 define ("ADMIN_PASSWORD", "admin");
 
@@ -45,14 +42,12 @@ require_once(PATH_LIBS . "request.class.php");
 require_once(PATH_LIBS . "dataAdapter.class.php");
 require_once(PATH_LIBS . "OrmNode.class.php");
 require_once(PATH_LIBS . "helper.class.php");
-require_once(PATH_LIBS . "html.render.class.php");
 require_once(PATH_LIBS . "core.controller.class.php");
 require_once(PATH_LIBS . "moduleManager.class.php");
 require_once(PATH_LIBS . "dataNode.class.php");
 require_once(PATH_LIBS . "users.class.php");
 require_once(PATH_LIBS . "phpMailer.class.php");
 require_once(PATH_LIBS . "myMail.class.php");
-require_once(PATH_LIBS . "simpleCoords.class.php");
 require_once(PATH_LIBS . "users.class.php");
 
 require_once(PATH_LIBS . "autoloader.php");

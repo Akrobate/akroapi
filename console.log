@@ -1,0 +1,906 @@
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => accessunexists
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [action] => accessunexists
+    [module] => users
+    [result] => Not fount or not authorized
+    [errorId] => 404
+)
+stdClass Object
+(
+    [module] => users
+    [action] => login
+    [params] => stdClass Object
+        (
+            [login] => blabla
+            [password] => test
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [status] => invalid
+        )
+
+    [action] => login
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => login
+    [params] => stdClass Object
+        (
+            [login] => admin
+            [password] => 987
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [status] => connected
+        )
+
+    [action] => login
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => logout
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [status] => logout
+        )
+
+    [action] => logout
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)
+stdClass Object
+(
+    [module] => users
+    [action] => access
+    [params] => Array
+        (
+        )
+
+    [token] => 
+)
+Array
+(
+    [data] => Array
+        (
+            [acl] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => login
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => suscribe
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => access
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => logout
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [id] => 
+                            [id_group] => 
+                            [access] => public
+                            [module] => users
+                            [action] => add
+                            [created] => 
+                            [id_user] => 
+                            [name] => 
+                            [description] => 
+                        )
+
+                )
+
+            [connected] => no
+        )
+
+    [action] => access
+    [module] => users
+    [result] => success
+    [errorId] => 200
+)

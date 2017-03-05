@@ -1,4 +1,4 @@
-INSERT INTO `realtimejobbing`.`groupsusers` (
+INSERT INTO `groupsusers` (
 `id_user`,
 `id_group`
 )

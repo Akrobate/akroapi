@@ -1,4 +1,4 @@
-INSERT INTO `realtimejobbing`.`users` (
+INSERT INTO `users` (
 `id`,
 `email`,
 `password` ,

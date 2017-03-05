@@ -31,5 +31,5 @@ $fields['timestamp']['label'] = "Timestamp";
 
 
 $indexqueries = array();
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`sessions` ADD INDEX `sessionid` ( `sessionid` );";
+$indexqueries[] = "ALTER TABLE `sessions` ADD INDEX `sessionid` ( `sessionid` );";
 

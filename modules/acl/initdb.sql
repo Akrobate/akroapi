@@ -1,4 +1,4 @@
-INSERT INTO `realtimejobbing`.`acl` (
+INSERT INTO `acl` (
 `id_group`,
 `access` ,
 `module` ,

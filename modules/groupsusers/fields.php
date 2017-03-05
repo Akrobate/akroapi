@@ -30,5 +30,5 @@ $fields['id_group']['join']['field'] = 'name';
 $fields['id_group']['join']['type'] = '1-n';
 
 $indexqueries = array();
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`groupsusers` ADD INDEX `id_user` ( `id_user` );";
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`groupsusers` ADD INDEX `id_group` ( `id_group` );";
+$indexqueries[] = "ALTER TABLE `groupsusers` ADD INDEX `id_user` ( `id_user` );";
+$indexqueries[] = "ALTER TABLE `groupsusers` ADD INDEX `id_group` ( `id_group` );";

@@ -1,8 +1,8 @@
 <?php
 
-const API_URL = "http://localhost/server/";
+const API_URL = "http://localhost/akroapi/";
 
-$cookies_file = "./tests/coockies/coockies.txt";
+$cookies_file = "./coockies/coockies.txt";
 
 
 /**

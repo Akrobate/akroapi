@@ -48,9 +48,9 @@ $fields['created']['label'] = 'Date de creation';
 
 
 $indexqueries = array();
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`users` ADD INDEX `emailpassword` ( `email` , `password` );";
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`users` ADD INDEX `usertype` ( `usertype` );";
-$indexqueries[] = "ALTER TABLE `realtimejobbing`.`users` ADD INDEX `status` ( `status` );";
+$indexqueries[] = "ALTER TABLE `users` ADD INDEX `emailpassword` ( `email` , `password` );";
+$indexqueries[] = "ALTER TABLE `users` ADD INDEX `usertype` ( `usertype` );";
+$indexqueries[] = "ALTER TABLE `users` ADD INDEX `status` ( `status` );";
 
 
 
