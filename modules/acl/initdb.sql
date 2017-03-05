@@ -5,7 +5,7 @@ INSERT INTO `acl` (
 `action` ,
 `created`
 )
-VALUES 
+VALUES
 (0,'public', 'users', 'login', NOW()),
 (0,'public', 'users', 'suscribe', NOW()),
 (0,'public', 'users', 'access', NOW()),
@@ -46,5 +46,10 @@ VALUES
 (1,'granted', 'offers', 'removeoffer', NOW()),
 (1,'granted', 'offers', 'view', NOW()),
 (1,'granted', 'offers', 'getusersfromoffer', NOW()),
-(1,'granted', 'offers', 'update', NOW())
+(1,'granted', 'offers', 'update', NOW()),
+(1,'granted', 'testitem', 'save', NOW()),
+(1,'granted', 'testitem', 'index', NOW()),
+(1,'granted', 'testitem', 'edit', NOW()),
+(1,'granted', 'testitem', 'delete', NOW()),
+(1,'granted', 'testitem', 'view', NOW())
 ;
