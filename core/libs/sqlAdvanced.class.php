@@ -3,62 +3,63 @@
 /**
  * @brief		Classe sqlAdvanced permettant de gerer toutes les interractions de tables
  * @details		Permet de gerer les interraction en mysql avec les tables
- *				
+ *
  * @author		Artiom FEDOROV
  */
 
 class sqlAdvanced {
 
+    public  static $display = 0;
 
 	/**
 	 * @brief		Affiche toutes les tables
-	 * @details		Affiche les tables 
+	 * @details		Affiche les tables
 	 * @return	Array contenant l'ensemble des tables
 	 */
-	 
+
 	public static function showAllTables() {
 		$query="SHOW TABLES";
 		sql::query($query);
-		return sql::allFetchArray();	
+		return sql::allFetchArray();
 	}
 
 
 	/**
 	 * @brief		Methode qui permet la creation d'une table
-	 * @details		
+	 * @details
 	 * @param	name	Nom de la table a creer
 	 * @param	params	Array contenant la description a suivre pour la creation de la table
 	 */
 
 	public static function createTable($name, $params = array()) {
-	
+
 		if (!empty($name)) {
 			$query = "CREATE TABLE IF NOT EXISTS ". $name ." (id mediumint(9) NOT NULL AUTO_INCREMENT, ";
-			  
+
 			 foreach( $params as $fieldname => $val ) {
-			 
+
 			 	$sqltype = DataAdapter::getSqlTypeFromStdType($val['type']);
-			 	 
+
 			 	if ($val['type'] == 'join') {
 					 $query .= " $fieldname " . $sqltype . " NOT NULL, ";
-			 	} else if ($val['type'] == 'date') {	 
+			 	} else if ($val['type'] == 'date') {
 				 	$query .= " $fieldname " . $sqltype . " NOT NULL, ";
-				 } else if ($val['type'] == 'largetext') {	 
+				 } else if ($val['type'] == 'largetext') {
 				 	$query .= " $fieldname " . $sqltype . " NOT NULL, ";
-				 } else if ($val['type'] == 'text') {	 
+				 } else if ($val['type'] == 'text') {
 				 	$query .= " $fieldname " . $sqltype . " NOT NULL, ";
 				 } else {
 				 	$query .= " $fieldname " . $sqltype . " NOT NULL, ";
 				 }
 			 }
-			  
+
 			 $query .= " PRIMARY KEY (id)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; ";
 			 sql::query($query);
 
-			if (sql::$display) {
+			if (self::$display) {
 				echo("\n Table de travail : ". $name  ." crée \n\n");
 			}
-		}	
+		}
 	}
 
 
@@ -72,13 +73,13 @@ class sqlAdvanced {
 		if (!empty($name)) {
 			$query = "DROP TABLE IF EXISTS ". $name ." ;";
 			sql::query($query);
-			if (sql::$display) {
+			if (self::$display) {
 				echo("\n Table de travail : ". $name  ." Supprimée \n\n");
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * @brief		Verifie l'existance d'une table
 	 * @details		Verifie si la table table exists renvoi true si oui else sinon
@@ -86,11 +87,14 @@ class sqlAdvanced {
  	 * @return	bool	Renvoi true si table existe false sinon
  	 *
 	 */
-	
-	public static function tableExists($table) {	
+
+	public static function tableExists($table) {
 		if (!empty($table)) {
-			$query = " SHOW TABLES FROM " . DB_NAME . " LIKE '".$table."' ";
+			$query = " SHOW TABLES FROM `" . DB_NAME . "` LIKE '".$table."' ";
 			sql::query($query);
+            // if (sql::errorNo()) {
+            //     echo(sql::error());
+            // }
 			$nb = sql::nbrRows();
 			if ($nb > 0) {
 				return true;
@@ -110,7 +114,7 @@ class sqlAdvanced {
  	 *
 	 */
 
-	public static function addField($table, $fieldname, $type) {	
+	public static function addField($table, $fieldname, $type) {
 		if (!empty($table)) {
 			$query = " ALTER TABLE $table ADD $fieldname $type ";
 			sql::query($query);
@@ -120,4 +124,3 @@ class sqlAdvanced {
 		}
 	}
 }
-

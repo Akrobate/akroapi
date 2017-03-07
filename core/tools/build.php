@@ -26,7 +26,10 @@ $contactsrandomapi = true;
 
 if (in_array("--create", $argv)) {
 	foreach($dirs as $dir) {
+
+        $log = " table: " . $dir;
 		if (sql::tableExists($dir)) {
+            $log .= " -RemovingTable- ";
 			sql::removeTable($dir);
 		}
 		unset($fields);
@@ -43,10 +46,9 @@ if (in_array("--create", $argv)) {
 			sql::createTable($dir, $fields);
 		}
 
-		echo(" creation: ok -- \n");
+		echo("creation: ok - $log  \n");
 
 		//	Initialise la base avec les vrais index
-
 		if (isset($indexqueries)) {
 			foreach($indexqueries as $indexQuery) {
 				sql::query($indexQuery);
@@ -61,7 +63,6 @@ if (in_array("--create", $argv)) {
 			}
 			unset($indexqueries);
 		}
-
 	}
 }
 
