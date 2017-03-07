@@ -25,31 +25,17 @@ VALUES
 (1,'granted', 'users', 'getinfos', NOW()),
 (1,'granted', 'users', 'setinfos', NOW()),
 
-(1,'granted', 'skills', 'getall', NOW()),
 
-(1,'granted', 'locations', 'getall', NOW()),
-
-(1,'granted', 'offers', 'getall', NOW()),
-(1,'granted', 'offers', 'answer', NOW()),
-(1,'granted', 'offers', 'getmines', NOW()),
-
-(1,'granted', 'offers', 'getminesdraft', NOW()),
-(1,'granted', 'offers', 'getminespublished', NOW()),
-(1,'granted', 'offers', 'getskills', NOW()),
-(1,'granted', 'offers', 'removeskill', NOW()),
-(1,'granted', 'offers', 'addskill', NOW()),
-
-(1,'granted', 'offers', 'getlocations', NOW()),
-(1,'granted', 'offers', 'removelocation', NOW()),
-(1,'granted', 'offers', 'addlocation', NOW()),
-(1,'granted', 'offers', 'createdraft', NOW()),
-(1,'granted', 'offers', 'removeoffer', NOW()),
-(1,'granted', 'offers', 'view', NOW()),
-(1,'granted', 'offers', 'getusersfromoffer', NOW()),
-(1,'granted', 'offers', 'update', NOW()),
 (1,'granted', 'testitem', 'save', NOW()),
 (1,'granted', 'testitem', 'index', NOW()),
 (1,'granted', 'testitem', 'edit', NOW()),
 (1,'granted', 'testitem', 'delete', NOW()),
-(1,'granted', 'testitem', 'view', NOW())
+(1,'granted', 'testitem', 'view', NOW()),
+
+
+(2,'granted', 'testitemrestricted', 'save', NOW()),
+(2,'granted', 'testitemrestricted', 'index', NOW()),
+(2,'granted', 'testitemrestricted', 'edit', NOW()),
+(2,'granted', 'testitemrestricted', 'delete', NOW()),
+(2,'granted', 'testitemrestricted', 'view', NOW())
 ;
