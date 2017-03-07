@@ -1,6 +1,10 @@
-INSERT INTO `aclgroups` (
-`id`,
-`name` ,
-`created`
+INSERT INTO `aclgroups`
+(
+    `id`,
+    `name` ,
+    `created`
 )
-VALUES ('1','connected', NOW());
+VALUES
+    ('1','connected', NOW()),
+    ('2','restricted', NOW())
+;
