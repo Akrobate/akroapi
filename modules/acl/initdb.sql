@@ -15,13 +15,6 @@ VALUES
 (1, 'granted', 'users', 'myself', NOW()),
 (1, 'granted', 'users', 'index', NOW()),
 
-(1,'granted', 'users', 'getskills', NOW()),
-(1,'granted', 'users', 'addskill', NOW()),
-(1,'granted', 'users', 'removeskill', NOW()),
-
-(1,'granted', 'users', 'getlocations', NOW()),
-(1,'granted', 'users', 'addlocation', NOW()),
-(1,'granted', 'users', 'removelocation', NOW()),
 (1,'granted', 'users', 'getinfos', NOW()),
 (1,'granted', 'users', 'setinfos', NOW()),
 
