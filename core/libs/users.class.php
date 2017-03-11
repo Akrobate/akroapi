@@ -130,6 +130,7 @@ class users {
 	public static function loadProfile() {
         self::$profile = self::loadACL();
         session::$data['profile'] = self::$profile;
+        return self::$profile;
 	}
 
 
@@ -160,8 +161,8 @@ class users {
 		}
 
 		$profile = array();
-		while($profile = sql::fetchAssoc()) {
-			$profile[] = $profile;
+		while($acl = sql::fetchAssoc()) {
+			$profile[] = $acl;
 		}
         return $profile;
     }
