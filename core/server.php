@@ -2,7 +2,7 @@
 
 /**
  *  AkroApi simple server
- *  
+ *
  *
  */
 
@@ -26,7 +26,7 @@ class Server {
             $token = session::start(@$rq->token);
         }
 
-        // file_put_contents ("console.log", print_r($rq,1),  FILE_APPEND);
+        $this->log(print_r($rq,1));
         $ctr = new Controller();
         $ctr->setAction(@$rq->action);
         $ctr->setModule(@$rq->module);
@@ -47,6 +47,13 @@ class Server {
 
         //print_r(session::$data);
         session::writeclose($token);
-        //	file_put_contents ("console.log", print_r($ctr->getData(),1),  FILE_APPEND);
+
+        $this->log(print_r($ctr->getData(),1));
+
     }
+
+    public function log($data) {
+        file_put_contents (LOG_FILE, print_r($data,  FILE_APPEND));
+    }
+
 }
