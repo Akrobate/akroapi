@@ -65,7 +65,7 @@ class users {
 			return true;
 		} else {
 			// verification si l'utilisateur existe en base.
-			sql::query("SELECT * FROM users WHERE email='".$login."' AND password='".$pw."'");
+			sql::query("SELECT * FROM users WHERE login='".$login."' AND password='".$pw."'");
 			if ($user = sql::fetchArray()) {
 				self::$connected = true;
 				self::$me = $user;

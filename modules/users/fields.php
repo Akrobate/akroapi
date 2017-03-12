@@ -12,20 +12,11 @@
 
 $table['engine'] = "InnoDb";
 
-$fields['androidid']['type'] = 'androidid';
-$fields['androidid']['label'] = 'Id Android';
-
-$fields['usertype']['type'] = 'smalltext';
-$fields['usertype']['label'] = "Type d'utilisateur";
-
 $fields['firstname']['type'] = 'text';
 $fields['firstname']['label'] = 'Prenom';
 
 $fields['lastname']['type'] = 'text';
 $fields['lastname']['label'] = 'Nom';
-
-$fields['phone']['type'] = 'text';
-$fields['phone']['label'] = 'Telephone';
 
 $fields['email']['type'] = 'text';
 $fields['email']['label'] = 'email';
@@ -33,6 +24,9 @@ $fields['email']['label'] = 'email';
 $fields['photourl']['type'] = 'text';
 $fields['photourl']['label'] = 'Url de la photo';
 
+
+$fields['login']['type'] = 'text';
+$fields['login']['label'] = 'Login';
 
 $fields['password']['type'] = 'text';
 $fields['password']['label'] = 'Mot de passe';
@@ -48,11 +42,5 @@ $fields['created']['label'] = 'Date de creation';
 
 
 $indexqueries = array();
-$indexqueries[] = "ALTER TABLE `users` ADD INDEX `emailpassword` ( `email` , `password` );";
-$indexqueries[] = "ALTER TABLE `users` ADD INDEX `usertype` ( `usertype` );";
+$indexqueries[] = "ALTER TABLE `users` ADD INDEX `emailpassword` ( `email` );";
 $indexqueries[] = "ALTER TABLE `users` ADD INDEX `status` ( `status` );";
-
-
-
-
-

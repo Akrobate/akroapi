@@ -112,3 +112,26 @@ function apiQuickQueryWithToken($url, $module, $action, $params = array(), $toke
 
 		return $answer;
 }
+
+
+
+function connect($login, $password, $token) {
+    echo("$login, $password\n");
+    $answer = apiQuickQueryWithToken(API_URL, 'users', 'login', array('login'=> $login, 'password'=> $password), $token);
+    return $answer->token;
+}
+
+
+function disconnect($token) {
+    $answer = apiQuickQueryWithToken(API_URL, 'users', 'logout', array(), $token);
+}
+
+
+function checkConnected($token) {
+    $answer = apiQuickQueryWithToken(API_URL, 'users', 'access', array(), $token);
+	if ($answer->data->connected == 'yes') {
+		return true;
+	} else {
+		return false;
+	}
+}

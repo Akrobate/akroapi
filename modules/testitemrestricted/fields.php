@@ -24,8 +24,12 @@ $fields = [
         'type' => 'text',
         'label' => 'Test text'
     ],
+    'owner_user_id' => [
+        'type' => 'int',
+        'label' => 'User own data'
+    ],
     'created' => [
         'type' => 'datetime',
         'label' => 'Creation date'
-    ],
+    ]
 ];

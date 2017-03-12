@@ -13,42 +13,39 @@ class Server {
     public function run() {
 
         header('Content-Type: text/html; charset=utf-8');
-
         date_default_timezone_set("Europe/Paris");
-        //session_start();
-        $rq = request::getPostJSON();
 
-        //	print_r(@$rq);
+        $req = request::getPostJSON();
 
-        if (!isset($rq->token)) {
+        if (!isset($req->token)) {
             $token = session::start();
         } else {
-            $token = session::start(@$rq->token);
+            $token = session::start(@$req->token);
         }
 
-        $this->log(print_r($rq,1));
-        $ctr = new Controller();
-        $ctr->setAction(@$rq->action);
-        $ctr->setModule(@$rq->module);
-        // $ctr->setParams(request::ut8ParamsEncode(@$rq->params));
+        $this->log(print_r($req,1));
 
-        $ctr->setParams(@$rq->params);
-        $ctr->setFormat("json");
-        $ctr->assign('token', $token);
+        $app = new Controller();
+        $app->setAction(@$req->action);
+        $app->setModule(@$req->module);
+        // $app->setParams(request::ut8ParamsEncode(@$req->params));
+
+        $app->setParams(@$req->params);
+        $app->setFormat("json");
+        $app->assign('token', $token);
 
         //debug
-        if ($ctr->getDebug()) {
-            $arr = $ctr->getArray();
-            var_dump($rq);
+        if ($app->getDebug()) {
+            $arr = $app->getArray();
+            var_dump($req);
             print_r($arr);
         } else {
-            $ctr->renderJSON();
+            $app->renderJSON();
         }
 
-        //print_r(session::$data);
         session::writeclose($token);
 
-        $this->log(print_r($ctr->getData(),1));
+        $this->log(print_r($app->getData(),1));
 
     }
 
