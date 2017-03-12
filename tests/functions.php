@@ -115,8 +115,7 @@ function apiQuickQueryWithToken($url, $module, $action, $params = array(), $toke
 
 
 
-function connect($login, $password, $token) {
-    echo("$login, $password\n");
+function connect($login, $password, $token = null) {
     $answer = apiQuickQueryWithToken(API_URL, 'users', 'login', array('login'=> $login, 'password'=> $password), $token);
     return $answer->token;
 }

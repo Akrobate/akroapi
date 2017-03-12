@@ -14,10 +14,8 @@ VALUES
 
 (1, 'granted', 'users', 'myself', NOW()),
 (1, 'granted', 'users', 'index', NOW()),
-
 (1,'granted', 'users', 'getinfos', NOW()),
 (1,'granted', 'users', 'setinfos', NOW()),
-
 
 (1,'granted', 'testitem', 'save', NOW()),
 (1,'granted', 'testitem', 'index', NOW()),
@@ -25,10 +23,15 @@ VALUES
 (1,'granted', 'testitem', 'delete', NOW()),
 (1,'granted', 'testitem', 'view', NOW()),
 
-
 (2,'granted', 'testitemrestricted', 'save', NOW()),
 (2,'granted', 'testitemrestricted', 'index', NOW()),
 (2,'granted', 'testitemrestricted', 'edit', NOW()),
 (2,'granted', 'testitemrestricted', 'delete', NOW()),
-(2,'granted', 'testitemrestricted', 'view', NOW())
+(2,'granted', 'testitemrestricted', 'view', NOW()),
+
+(2,'granted', 'testitemrestricted', 'mysave', NOW()),
+(2,'granted', 'testitemrestricted', 'myindex', NOW()),
+(2,'granted', 'testitemrestricted', 'myedit', NOW()),
+(2,'granted', 'testitemrestricted', 'mydelete', NOW()),
+(2,'granted', 'testitemrestricted', 'myview', NOW())
 ;

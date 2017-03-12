@@ -14,14 +14,19 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
     public static $comparation_token = "Text to save while testing";
     public static $comparation_edition_token = "Edition text to save while testing";
 
+    public static $testitem_id_A = null;
+    public static $testitem_id_B = null;
+
     public static $users = [
         'A' => [
             'login' => "user4",
-            'password' => "987"
+            'password' => "987",
+            'comparation_token' => "Text owned by user A to save while testing"
         ],
         'B' => [
             'login' => "user5",
-            'password' => "987"
+            'password' => "987",
+            'comparation_token' => "Text owned by user B to save while testing"
         ],
 
     ];
@@ -37,10 +42,10 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 	 *
 	 */
 
-     public function testTestItemAddItem() {
+     public function testAddItemUserA() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
         // var_dump( self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('testtext'=>self::$comparation_token), self::$token);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext'=>self::$comparation_token), self::$token);
         $this->assertEquals(200, $answer->errorId);
         self::$testitem_id = $answer->data->id;
         // var_dump(self::$testitem_id);
@@ -53,9 +58,9 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 	 *
 	 */
 
-     public function testTestItemViewCreated() {
-        self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
+     public function testAsBViewCreatedByA() {
+        self::$token = connect(self::$users['B']['login'], self::$users['B']['password']);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myview', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
         // print_r($data);
         // var_dump($answer);
@@ -72,7 +77,7 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
      public function testTestItemUpdate() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('id'=>self::$testitem_id, 'testtext'=>self::$comparation_edition_token), self::$token);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'save', array('id'=>self::$testitem_id, 'testtext'=>self::$comparation_edition_token), self::$token);
         // $data = $answer->data->properties;
         // print_r($data);
         // var_dump($answer);
@@ -89,7 +94,7 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
      public function testTestItemViewUpdated() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'view', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
         // print_r($data);
         // var_dump($answer);
@@ -106,8 +111,8 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
      public function testTestItemDelete() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'delete', array('id'=>self::$testitem_id), self::$token);
-        $this->assertEquals(200, $answer->errorId);
+//	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'delete', array('id'=>self::$testitem_id), self::$token);
+//        $this->assertEquals(200, $answer->errorId);
     	disconnect(self::$token);
     }
 
@@ -119,10 +124,10 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
      public function testTestItemViewDeleted() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
-        //var_dump($answer);
-        $this->assertEquals(null, $answer->data->properties);
-        $this->assertEquals(200, $answer->errorId);
+	//   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'view', array('id'=>self::$testitem_id), self::$token);
+    //    //var_dump($answer);
+    //    $this->assertEquals(null, $answer->data->properties);
+    //    $this->assertEquals(200, $answer->errorId);
     	disconnect(self::$token);
     }
 
