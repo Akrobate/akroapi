@@ -30,8 +30,12 @@ class UserOrmNode extends OrmNode {
 	 *	@details	Initialise certaines valeures
 	 */
 
-	public function __construct() {
+	public function __construct($owner_user_id) {
+        $this->$owner_user_id = $owner_user_id;
+        logger::log("======================================================================");
 
+        parent::__construct();
+        logger::log("================================AFER construct ");
 	}
 
 
@@ -134,7 +138,13 @@ class UserOrmNode extends OrmNode {
 
 
 	public function upsert($module, $fields, $data) {
+        logger::log("====================== In Upsert 1==========================================");
+        $data['owner_user_id'] = $this->getOwnerUserId();
 
+        logger::log("====================== In Upsert 2==========================================");
+        logger::log(print_r($data,1));
+		$rez = parent::upsert($module, $fields, $data);
+        return $rez;
 	}
 
 }
