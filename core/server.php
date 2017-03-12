@@ -23,7 +23,7 @@ class Server {
             $token = session::start(@$req->token);
         }
 
-        logger::log(print_r($req,1));
+        //logger::log(print_r($req,1));
 
         $app = new Controller();
         $app->setAction(@$req->action);
@@ -44,7 +44,7 @@ class Server {
         }
 
         session::writeclose($token);
-        logger::log(print_r($app->getData(),1));
+        // logger::log(print_r($app->getData(),1));
     }
 
 }

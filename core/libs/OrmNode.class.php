@@ -70,7 +70,7 @@ class OrmNode extends DataAdapter {
 	 *
 	 */
 
-	public static function getData($module, $id) {
+	public function getData($module, $id) {
 		$query = "SELECT * FROM $module WHERE id = $id";
 		sql::query($query);
 		$data = sql::allFetchAssoc();

@@ -16,12 +16,12 @@ class UserOrmNode extends OrmNode {
 
 
     public function setOwnerUserId($owner_user_id) {
-        $this->$owner_user_id = $owner_user_id;
+        $this->owner_user_id = $owner_user_id;
     }
 
 
     public function getOwnerUserId() {
-        return $this->$owner_user_id;
+        return $this->owner_user_id;
     }
 
 
@@ -31,11 +31,8 @@ class UserOrmNode extends OrmNode {
 	 */
 
 	public function __construct($owner_user_id) {
-        $this->$owner_user_id = $owner_user_id;
-        logger::log("======================================================================");
-
+        $this->owner_user_id = $owner_user_id;
         parent::__construct();
-        logger::log("================================AFER construct ");
 	}
 
 
@@ -49,8 +46,8 @@ class UserOrmNode extends OrmNode {
 	 *
 	 */
 
-	public static function getData($module, $id) {
-		$query = "SELECT * FROM $module WHERE id = $id";
+	public function getData($module, $id) {
+		$query = "SELECT * FROM $module WHERE id = $id AND owner_user_id = " . $this->getOwnerUserId();
 		sql::query($query);
 		$data = sql::allFetchAssoc();
         if (count($data) == 1) {
@@ -73,7 +70,7 @@ class UserOrmNode extends OrmNode {
 
 	public static function findDataFromFields($module, $fields = array(), $concat = "OR") {
 
-		$query = "SELECT * FROM $module WHERE ";
+		$query = "SELECT * FROM $module WHERE owner_user_id = " . $this->getOwnerUserId() . " AND (";
 		$i = count($fields);
 		foreach($fields as $field => $val) {
 			$query .= " " . $field . " = '" . $val . "' ";
@@ -82,6 +79,7 @@ class UserOrmNode extends OrmNode {
 				$query .= $concat . " ";
 			}
 		}
+        $query .= ")";
 		echo($query);
 		sql::query($query);
 		return sql::allFetchArray();
@@ -100,9 +98,9 @@ class UserOrmNode extends OrmNode {
 
 	public function getAllData($module, $fields = array()) {
 		if (isset($this->filter) && $this->filter != '') {
-			$query = "SELECT * FROM $module WHERE " . $this->filter;
+			$query = "SELECT * FROM $module WHERE " . $this->filter . " AND owner_user_id = " . $this->getOwnerUserId();
 		} else {
-			$query = "SELECT * FROM $module WHERE 1";
+			$query = "SELECT * FROM $module WHERE owner_user_id = " . $this->getOwnerUserId();
 		}
 
 		sql::query($query);
@@ -138,11 +136,7 @@ class UserOrmNode extends OrmNode {
 
 
 	public function upsert($module, $fields, $data) {
-        logger::log("====================== In Upsert 1==========================================");
         $data['owner_user_id'] = $this->getOwnerUserId();
-
-        logger::log("====================== In Upsert 2==========================================");
-        logger::log(print_r($data,1));
 		$rez = parent::upsert($module, $fields, $data);
         return $rez;
 	}

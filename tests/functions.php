@@ -82,9 +82,9 @@ function apiQuickQuery($url, $module, $action, $params = array(), $echo = false)
 
 		$answer = json_decode($answerstr);
 
-		if ($echo) {
+		if ($answer === null) {
 			echo($answerstr);
-			print_r($answer);
+			//print_r($answer);
 		}
 
 
@@ -105,9 +105,9 @@ function apiQuickQueryWithToken($url, $module, $action, $params = array(), $toke
 
 		$answer = json_decode($answerstr);
 
-		if ($echo) {
+		if ($answer === null) {
 			echo($answerstr);
-			print_r($answer);
+			//print_r($answer);
 		}
 
 		return $answer;

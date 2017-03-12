@@ -37,68 +37,64 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
 
    	/**
-	 *	On Connecte l'utilisateur et on recuper les skills
+	 *	UserA created an item with its value of comparation_token
 	 *	users / access
 	 *
 	 */
 
      public function testAddItemUserA() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-        // var_dump( self::$token);
-	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext'=>self::$comparation_token), self::$token);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
         $this->assertEquals(200, $answer->errorId);
         self::$testitem_id = $answer->data->id;
-        // var_dump(self::$testitem_id);
     	disconnect(self::$token);
     }
 
 
    	/**
-	 *	Check the element is added and data match
-	 *
+	 *	UserB try to view the itemId created by UserA
+	 *  Should not be able to view content
 	 */
 
      public function testAsBViewCreatedByA() {
         self::$token = connect(self::$users['B']['login'], self::$users['B']['password']);
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myview', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
-        // print_r($data);
-        var_dump($answer);
+        // var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
-        $this->assertEquals($data->testtext, self::$comparation_token);
+        $this->assertEquals(NULL, $data);
     	disconnect(self::$token);
     }
 
 
 
     /**
-	 *	Update ItemTest
-	 *
+	 *	Check UserA can see the content created by himslef
+	 *  Should be able to
 	 */
 
-     public function testTestItemUpdate() {
+     public function testAsAViewCreatedByA() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	//   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'save', array('id'=>self::$testitem_id, 'testtext'=>self::$comparation_edition_token), self::$token);
-        // $data = $answer->data->properties;
-        // print_r($data);
+	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myview', array('id'=>self::$testitem_id), self::$token);
+        $data = $answer->data->properties;
         // var_dump($answer);
-    //    $this->assertEquals(200, $answer->errorId);
-    //    $this->assertEquals("success", $answer->result);
+        $this->assertEquals(200, $answer->errorId);
+        $this->assertEquals(self::$users['A']['comparation_token'], $data->testtext );
         disconnect(self::$token);
     }
 
 
     /**
-	 *	Editing ItemTest
-	 *
+	 *	Check UserB remove users A item
+	 *  Should not be abble to
 	 */
 
-     public function testTestItemViewUpdated() {
-    	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	//   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'view', array('id'=>self::$testitem_id), self::$token);
+     public function testAsBRemoveCreatedByA() {
+    	self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
+	  	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
     //    $data = $answer->data->properties;
         // print_r($data);
-        // var_dump($answer);
+        var_dump($answer);
     //    $this->assertEquals(200, $answer->errorId);
     //    $this->assertEquals($data->testtext, self::$comparation_edition_token);
     	disconnect(self::$token);

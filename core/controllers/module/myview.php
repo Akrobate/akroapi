@@ -40,7 +40,7 @@ class Module_Myview extends CoreController {
 
 			// On recupere toutes les datas
 			$data = array();
-			$orm = new OrmNode();
+		    $orm = new UserOrmNode(users::getId());
 			$data = $orm->getData($this->getModule(), $id);
 
 			$this->assign('properties', $data);

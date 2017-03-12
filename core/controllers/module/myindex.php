@@ -19,7 +19,6 @@ class Module_Myindex extends CoreController {
 	 */
 
 	public function init() {
-		$orm = new OrmNode();
 		$module = $this->getModule();
 		//$orm->start_limit = $this->start;
 		//$orm->nbr_limit = $this->nbr;
@@ -30,8 +29,7 @@ class Module_Myindex extends CoreController {
 		$listFields = OrmNode::getFieldsFor($module);
 		$listFields['id'] = array('label'=>'id', 'type'=>'int');
 
-        $iduser = users::getId();
-        $orm->setFilter(" owner_user_id = $iduser ");
+        $orm = new UserOrmNode(users::getId());
 		$content = $orm->getAllData($this->getModule(), $listFields);
 
 		//print_r($content);
