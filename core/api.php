@@ -30,6 +30,7 @@ require_once(PATH_CORE_LIBS . "sessiondb.class.php");
 require_once(PATH_CORE_LIBS . "request.class.php");
 require_once(PATH_CORE_LIBS . "dataAdapter.class.php");
 require_once(PATH_CORE_LIBS . "OrmNode.class.php");
+require_once(PATH_CORE_LIBS . "UserOrmNode.class.php");
 require_once(PATH_CORE_LIBS . "helper.class.php");
 require_once(PATH_CORE_LIBS . "core.controller.class.php");
 require_once(PATH_CORE_LIBS . "moduleManager.class.php");
