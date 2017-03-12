@@ -3,7 +3,7 @@
 /**
  * @brief		Classe sql permettant de gerer toutes les interaction de base de données
  * @details		surcharge de toutes les méthodes d'acces a la base de données
- *				
+ *
  * @author		Artiom FEDOROV
  */
 
@@ -11,7 +11,7 @@ class sql extends sqlAdvanced{
 
 	private static $connect_handler = null;
 	private static $query_result;
-	public  static $display = 0; // variable pour le debug	
+	public  static $display = 0; // variable pour le debug
 
 
 	/**
@@ -21,7 +21,7 @@ class sql extends sqlAdvanced{
 	 *				Le handler est renvoyé et stocké au niveau du singleton
 	 * @return	handler		Renvoi le handler de la connection
 	 */
-	 
+
 	public static function connect() {
 		$connect_handler = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 		mysqli_select_db($connect_handler, DB_NAME);
@@ -34,12 +34,12 @@ class sql extends sqlAdvanced{
 
 	/**
 	 * @brief		Méthode d'execution de requetes
-	 * @details		Execute la requette 
+	 * @details		Execute la requette
 	 *				DB_HOST, DB_USER, DB_PASSWORD
 	 *				Le pointeur de la requete est renvoyé et stocké au niveau du singleton
 	 * @return	query_result	Renvoie le resultat de la requette a fetcher
 	 */
-	 
+
 	public static function query($query, $connect_handler = NULL) {
 		if ($connect_handler == null) {
 			if (self::$connect_handler == null) {
@@ -54,13 +54,13 @@ class sql extends sqlAdvanced{
 
 	/**
 	 * @brief		Méthode d'execution de requetes
-	 * @details		Execute la requette 
+	 * @details		Execute la requette
 	 *				DB_HOST, DB_USER, DB_PASSWORD
 	 *				Le pointeur de la requete est renvoyé et stocké au niveau du singleton
 	 * @return	query_result	Renvoie le resultat de la requette a fetcher
 
 	 */
-	 
+
 	public static function multiQuery($query, $connect_handler = NULL) {
 		if ($connect_handler == null) {
 			if (self::$connect_handler == null) {
@@ -73,13 +73,13 @@ class sql extends sqlAdvanced{
 		return self::$query_result;
 	}
 
-	
+
 	/**
 	 * @brief		Methode qui renvoie tous les resultats de la requete
 	 * @details		Fetch l'ensemble de la requete avec la méthode fetch_array
 	 * @return	Array	Renvoi tous les résultats de la requete
 	 */
-	
+
 	public static function allFetchArray() {
 		$data = array();
 		while ($return = @mysqli_fetch_array(self::$query_result)) {
@@ -87,14 +87,14 @@ class sql extends sqlAdvanced{
 		}
 		return $data;
 	}
-	
-	
+
+
 	/**
 	 * @brief		Methode qui renvoie tous les resultats de la requete
 	 * @details		Fetch l'ensemble de la requete avec la méthode fetch_array
 	 * @return	Array	Renvoi tous les résultats de la requete
 	 */
-	
+
 	public static function allFetchAssoc() {
 		$data = array();
 		while ($return = self::fetchAssoc()) {
@@ -102,15 +102,15 @@ class sql extends sqlAdvanced{
 		}
 		return $data;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @brief		Methode qui renvoie un resultat de la requete
 	 * @details		Fetch de la requete avec la méthode fetch_array
 	 * @return	Array	Renvoi le resultat courant de la requete
 	 */
-	
+
 	public static function fetchArray() {
 		return mysqli_fetch_array(self::$query_result);
 	}
@@ -121,7 +121,7 @@ class sql extends sqlAdvanced{
 	 * @details		Fetch de la requete avec la méthode fetch_array
 	 * @return	Array	Renvoi le resultat courant de la requete
 	 */
-	
+
 	public static function fetchAssoc() {
 		return mysqli_fetch_assoc(self::$query_result);
 	}
@@ -132,9 +132,19 @@ class sql extends sqlAdvanced{
 	 * @details		nombre de resultats de la requete
 	 * @return	int	Renvoi nombre de resultats
 	 */
-	 
+
 	public static function nbrRows() {
 		return @mysqli_num_rows(self::$query_result);
+	}
+
+	/**
+	 * @brief		Methode qui renvoie le nombre de résultats
+	 * @details		nombre de resultats de la requete
+	 * @return	int	Renvoi nombre de resultats
+	 */
+
+	public static function nbrAffectedRows() {
+		return @mysqli_affected_rows(self::$query_result);
 	}
 
 
@@ -143,7 +153,7 @@ class sql extends sqlAdvanced{
 	 * @details		identifiant du dernier enregistrement crée
 	 * @return	int	Renvoi l'id
 	 */
-	 
+
 	public static function lastId() {
 		return mysqli_insert_id(self::$connect_handler) ;
 	}
@@ -190,20 +200,20 @@ class sql extends sqlAdvanced{
  	 *
 	 */
 
-	public static function display($var) {	
+	public static function display($var) {
 		self::$display = $var;
 	}
-	
-	
+
+
 	public static function errorNo() {
 		return mysqli_errno(self::$connect_handler);
 	}
-	
+
 	public static function error() {
 		return mysqli_errno(self::$connect_handler)." : ".mysqli_error(self::$connect_handler);
 	}
-	
-	
-	
-	
+
+
+
+
 }

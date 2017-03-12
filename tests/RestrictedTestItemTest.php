@@ -92,11 +92,9 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
      public function testAsBRemoveCreatedByA() {
     	self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
 	  	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
-    //    $data = $answer->data->properties;
         // print_r($data);
-        var_dump($answer);
-    //    $this->assertEquals(200, $answer->errorId);
-    //    $this->assertEquals($data->testtext, self::$comparation_edition_token);
+        // var_dump($answer);
+        $this->assertEquals(false, $answer->data->deleted);
     	disconnect(self::$token);
     }
 

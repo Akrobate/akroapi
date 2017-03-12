@@ -14,6 +14,12 @@ class Module_Mydelete extends CoreController {
         if (isset($params->id)) {
             $id = $params->id;
             sql::query('DELETE FROM ' . $this->getModule() . " WHERE id = " . $id . " AND owner_user_id = " . $userid);
+            $nbr_removed = sql::nbrAffectedRows();
+            if ($nbr_removed == 0) {
+                $this->assign('deleted', false);
+            } else {
+                $this->assign('deleted', true);
+            }
         }
 	}
 }
