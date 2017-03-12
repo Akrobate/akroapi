@@ -287,8 +287,9 @@ class OrmNode extends DataAdapter {
 		} else {
 		// ID not set alors nouvelle création
 			$data_string = implode(',',$data_string_array);
+
 			$query = 'INSERT INTO ' . $module . ' ('.$fields_string.') VALUES ('. $data_string .');';
-			sql::query($query);
+            sql::query($query);
 			$lastid = sql::lastId();
 			$response['msg'] = 'ADDED';
 			$response['id'] = $lastid;

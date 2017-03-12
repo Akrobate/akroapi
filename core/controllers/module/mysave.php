@@ -44,7 +44,9 @@ class Module_Mysave extends CoreController {
 		}
 
         $data['owner_user_id'] = users::getId();
-        print_r("uderid " . users::getId());
+        logger::log("uderid " . users::getId() . "\n");
+        logger::log(print_r($allFields, 1));
+        logger::log(print_r( $data, 1));
 		$rez = $orm->upsert($this->getModule(), $allFields, $data);
 
 		// Si id est set tout s'est bien passé

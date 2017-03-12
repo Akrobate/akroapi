@@ -63,7 +63,7 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myview', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
         // print_r($data);
-        // var_dump($answer);
+        var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
         $this->assertEquals($data->testtext, self::$comparation_token);
     	disconnect(self::$token);

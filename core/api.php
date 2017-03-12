@@ -23,10 +23,9 @@ if (!defined ( "ADMIN_PASSWORD" ) ) {
     define ("ADMIN_PASSWORD", "admin");
 }
 
-
-
 require_once(PATH_CORE_LIBS . "sqlAdvanced.class.php");
 require_once(PATH_CORE_LIBS . "sql.class.php");
+require_once(PATH_CORE_LIBS . "logger.class.php");
 require_once(PATH_CORE_LIBS . "sessiondb.class.php");
 require_once(PATH_CORE_LIBS . "request.class.php");
 require_once(PATH_CORE_LIBS . "dataAdapter.class.php");
