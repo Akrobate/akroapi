@@ -92,7 +92,6 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
      public function testAsBRemoveCreatedByA() {
     	self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
 	  	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
-        // print_r($data);
         // var_dump($answer);
         $this->assertEquals(false, $answer->data->deleted);
     	disconnect(self::$token);
@@ -125,9 +124,8 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
      public function testAsARemoveCreatedByA() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
 		$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
-		// var_dump($answer);
-		$this->assertEquals(false, $answer->data->deleted);
-
+		//var_dump($answer);
+		$this->assertEquals(true, $answer->data->deleted);
     	disconnect(self::$token);
     }
 

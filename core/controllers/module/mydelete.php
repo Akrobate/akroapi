@@ -15,12 +15,10 @@ class Module_Mydelete extends CoreController {
             $id = $params->id;
             sql::query('DELETE FROM ' . $this->getModule() . " WHERE id = " . $id . " AND owner_user_id = " . $userid);
             $nbr_removed = sql::nbrAffectedRows();
-            if ($nbr_removed === null) {
-                $this->assign('deleted', false);
-                $this->assign('nbr', $nbr_removed);
-            } else {
+            if (($nbr_removed !== null) && ($nbr_removed > 0)) {
                 $this->assign('deleted', true);
-                $this->assign('nbr', $nbr_removed);
+            } else {
+                $this->assign('deleted', false);
             }
         }
 	}
