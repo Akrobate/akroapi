@@ -144,7 +144,7 @@ class sql extends sqlAdvanced{
 	 */
 
 	public static function nbrAffectedRows() {
-		return @mysqli_affected_rows(self::$query_result);
+		return @mysqli_affected_rows(self::$connect_handler);
 	}
 
 
