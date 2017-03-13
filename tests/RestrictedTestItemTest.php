@@ -127,6 +127,7 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 		$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
 		// var_dump($answer);
 		$this->assertEquals(false, $answer->data->deleted);
+
     	disconnect(self::$token);
     }
 
