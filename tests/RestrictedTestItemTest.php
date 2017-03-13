@@ -100,29 +100,33 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
 
 
     /**
-	 *	Deleting ItemTest
+	 *	Check UserA Can still read Item created by himself
+	 *	(after UserB Tryed to remove it)
+	 *	Sould be able to
 	 *
 	 */
 
-     public function testTestItemDelete() {
-    	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-//	   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'delete', array('id'=>self::$testitem_id), self::$token);
-//        $this->assertEquals(200, $answer->errorId);
-    	disconnect(self::$token);
+    public function testUserACanStillReadHisItem() {
+        self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myview', array('id'=>self::$testitem_id), self::$token);
+        $data = $answer->data->properties;
+        // var_dump($answer);
+        $this->assertEquals(200, $answer->errorId);
+        $this->assertEquals(self::$users['A']['comparation_token'], $data->testtext );
+        disconnect(self::$token);
     }
 
 
     /**
-	 *	Checking deletion ItemTest
-	 *
-	 */
+     *	Check UserB remove users A item
+     *  Should not be abble to
+     */
 
-     public function testTestItemViewDeleted() {
+     public function testAsARemoveCreatedByA() {
     	self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
-	//   	$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'view', array('id'=>self::$testitem_id), self::$token);
-    //    //var_dump($answer);
-    //    $this->assertEquals(null, $answer->data->properties);
-    //    $this->assertEquals(200, $answer->errorId);
+		$answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>self::$testitem_id), self::$token);
+		// var_dump($answer);
+		$this->assertEquals(false, $answer->data->deleted);
     	disconnect(self::$token);
     }
 
