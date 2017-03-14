@@ -17,6 +17,8 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
     public static $testitem_id_A = null;
     public static $testitem_id_B = null;
 
+    public static $set_of_elements = array();
+
     public static $users = [
         'A' => [
             'login' => "user4",
@@ -30,8 +32,6 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
         ],
 
     ];
-
-	//public static $idOfLocationForCRUDTest = 5;
 
     protected function setUp() { }
 
@@ -130,10 +130,100 @@ class RestrictedTestItemTest extends PHPUnit_Framework_TestCase {
     }
 
 
-    protected function tearDown() {
+    //      ____                            _         ____
+    //     / ___|  ___ ___ _ __   __ _ _ __(_) ___   |___ \
+    //     \___ \ / __/ _ \ '_ \ / _` | '__| |/ _ \    __) |
+    //      ___) | (_|  __/ | | | (_| | |  | | (_) |  / __/
+    //     |____/ \___\___|_| |_|\__,_|_|  |_|\___/  |_____|
+    //
 
+    /**
+     *	UserB creates 3 items
+     *
+     */
 
+     public function testAdd3ItemsUserB() {
+        self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
+
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        $this->assertEquals(200, $answer->errorId);
+        self::$set_of_elements[] = $answer->data->id;
+
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        $this->assertEquals(200, $answer->errorId);
+        self::$set_of_elements[] = $answer->data->id;
+
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mysave', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        $this->assertEquals(200, $answer->errorId);
+        self::$set_of_elements[] = $answer->data->id;
+
+        disconnect(self::$token);
     }
 
+
+    /**
+     *	Check userA cannot see any items of userB
+     *
+     */
+
+    public function testAsUserAViewAll() {
+        self::$token = connect(self::$users['A']['login'], self::$users['A']['password'], self::$token);
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myindex', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        //var_dump($answer);
+        $elements_of_userB_accessible_by_userA = false;
+        foreach($answer->data->list as $elment) {
+            if (in_array($elment->id, self::$set_of_elements)) {
+                $elements_of_userB_accessible_by_userA = true;
+                break;
+            }
+        }
+        $this->assertEquals(false, $elements_of_userB_accessible_by_userA);
+        disconnect(self::$token);
+   }
+
+
+    /**
+    *	Check userB can see its 3 creations
+    *
+    */
+
+    public function testAsUserBViewAll() {
+        self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myindex', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        // var_dump($answer);
+        $one_of_elements_userB_notaccessible_by_himself = false;
+        $all_ids = array();
+        foreach($answer->data->list as $elment) {
+            $all_ids[] = $elment->id;
+        }
+        foreach(self::$set_of_elements as $element) {
+            if (!in_array($element, $all_ids)) {
+                $one_of_elements_userB_notaccessible_by_himself = true;
+                break;
+            }
+        }
+        $this->assertEquals(false, $one_of_elements_userB_notaccessible_by_himself);
+        disconnect(self::$token);
+    }
+
+
+    /**
+     *	Check userB removes its 3 creations
+     *
+     */
+
+    public function testAsUserBRemoveAll() {
+        self::$token = connect(self::$users['B']['login'], self::$users['B']['password'], self::$token);
+        $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'myindex', array('testtext' => self::$users['A']['comparation_token'] ), self::$token);
+        // var_dump($answer);
+        foreach(self::$set_of_elements as $element) {
+            $answer = apiQuickQueryWithToken(self::$url, 'testitemrestricted', 'mydelete', array('id'=>$element), self::$token);
+            $this->assertEquals(true, $answer->data->deleted);
+        }
+        disconnect(self::$token);
+    }
+
+
+    protected function tearDown() { }
 
 }

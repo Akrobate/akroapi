@@ -42,19 +42,8 @@ class Module_Mysave extends CoreController {
 			$data['id'] = $id;
 		}
 
-//        $data['owner_user_id'] = users::getId();
-//        logger::log("uderid " . users::getId() . "\n");
-//        logger::log(print_r($allFields, 1));
-//        logger::log(print_r( $data, 1));
-//        $rez = $orm->upsert($this->getModule(), $allFields, $data);
-
-
-logger::log("========================!!!!!!!!!!!!!!!!!!==================== " . "\n");
-
         $orm = new UserOrmNode(users::getId());
         $rez = $orm->upsert($this->getModule(), $allFields, $data);
-
-
 
 		// Si id est set tout s'est bien passé
 		if ($rez['id'] != 0) {

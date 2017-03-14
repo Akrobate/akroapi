@@ -11,7 +11,7 @@
 
 class UserOrmNode extends OrmNode {
 
-	public $disable_limits = false;
+	public $disable_limits = true;
     public $owner_user_id;
 
 
@@ -140,5 +140,26 @@ class UserOrmNode extends OrmNode {
 		$rez = parent::upsert($module, $fields, $data);
         return $rez;
 	}
+
+
+    /**
+     *  RemoveData Method
+     *  @brief  Removes data owned by the current user
+     *  @return bool Return true if element removed, else return false
+     *
+     */
+
+    public function removeData($module, $id) {
+        sql::query('DELETE FROM ' . $module . " WHERE id = " . $id . " AND owner_user_id = " . $this->getOwnerUserId());
+        $nbr_removed = sql::nbrAffectedRows();
+        if (($nbr_removed !== null) && ($nbr_removed > 0)) {
+            return true;
+        } else {
+            return false;
+        }
+	}
+
+
+
 
 }
