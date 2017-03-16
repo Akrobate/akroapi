@@ -23,18 +23,15 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
 
 
    	/**
-	 *	On Connecte l'utilisateur et on recuper les skills
-	 *	users / access
+	 *	Check connected user can save an item
 	 *
 	 */
 
      public function testTestItemAddItem() {
     	$this->connect();
-        // var_dump( self::$token);
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('testtext'=>self::$comparation_token), self::$token);
         $this->assertEquals(200, $answer->errorId);
         self::$testitem_id = $answer->data->id;
-        // var_dump(self::$testitem_id);
     	$this->disconnect();
     }
 
@@ -48,8 +45,6 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
     	$this->connect();
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
-        // print_r($data);
-        // var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
         $this->assertEquals($data->testtext, self::$comparation_token);
     	$this->disconnect();
@@ -64,9 +59,6 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
      public function testTestItemUpdate() {
     	$this->connect();
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'save', array('id'=>self::$testitem_id, 'testtext'=>self::$comparation_edition_token), self::$token);
-        // $data = $answer->data->properties;
-        // print_r($data);
-        // var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
         $this->assertEquals("success", $answer->result);
     	$this->disconnect();
@@ -82,8 +74,6 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
     	$this->connect();
 	   	$answer = apiQuickQueryWithToken(self::$url, 'testitem', 'view', array('id'=>self::$testitem_id), self::$token);
         $data = $answer->data->properties;
-        // print_r($data);
-        // var_dump($answer);
         $this->assertEquals(200, $answer->errorId);
         $this->assertEquals($data->testtext, self::$comparation_edition_token);
     	$this->disconnect();
@@ -105,7 +95,7 @@ class TestItemTest extends PHPUnit_Framework_TestCase {
 
     /**
 	 *	Checking deletion ItemTest
-	 *	
+	 *
 	 */
 
      public function testTestItemViewDeleted() {
