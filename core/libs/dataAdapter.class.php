@@ -64,7 +64,7 @@ class DataAdapter {
 	 */
 
 	public static function getSqlTypeFromStdType($type) {
-		$resp = "";
+		$resp = $type;
 		switch ($type) {
 			case "textid64":
 				$resp = "VARCHAR(64)";
