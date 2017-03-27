@@ -105,6 +105,9 @@ class DataAdapter {
 			case "price":
 				$resp = "DECIMAL(10,2)";
 				break;
+			case "decimal5-2":
+				$resp = "DECIMAL(5,2)";
+				break;
 			case "join":
 				$resp = "INT(11)";
 				break;
